@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>One sample Z-tests</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">One sample Z-tests</h1>
+
+
+
+<p>In this vignette, we work through an example Z-test, and point out a
+number of points where you might get stuck along the way.</p>
+<div id="problem-setup" class="section level2">
+<h2>Problem setup</h2>
+<p>Let’s suppose that a student is interesting in estimating how many
+memes their professors know and love. So they go to class, and every
+time a professor uses a new meme, they write it down. After a year of
+classes, the student has recorded the following meme counts, where each
+count corresponds to a single class they took:</p>
+<p><span class="math display">\[
+  3, 7, 11, 0, 7, 0, 4, 5, 6, 2
+\]</span></p>
+<p>The student talks to some other students who’ve done similar studies
+and determines that <span class="math inline">\(\sigma = 2\)</span> is a
+reasonable value for the standard deviation of this distribution.</p>
+</div>
+<div id="assumption-checking" class="section level2">
+<h2>Assumption checking</h2>
+<p>Before we can do a Z-test, we need to make check if we can reasonably
+treat the mean of this sample as normally distributed. This happens is
+the case of either of following hold:</p>
+<ol style="list-style-type: decimal">
+<li>The data comes from a normal distribution.</li>
+<li>We have lots of data. How much? Many textbooks use 30 data points as
+a rule of thumb.</li>
+</ol>
+<p>Since we have a small sample, we should check if the data comes from
+a normal distribution using a normal quantile-quantile plot.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">0</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make the qqplot</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Since the data lies close the line <span class="math inline">\(y =
+x\)</span>, and has no notable systematic deviations from line, it’s
+safe to treat the sample as coming from a normal distribution. We can
+proceed with our hypothesis test.</p>
+</div>
+<div id="null-hypothesis-and-test-statistic" class="section level2">
+<h2>Null hypothesis and test statistic</h2>
+<p>Let’s test the null hypothesis that, on average, professors know 3
+memes. That is</p>
+<p><span class="math display">\[
+  H_0: \mu = 3 \qquad H_A: \mu \neq 3
+\]</span></p>
+<p>First we need to calculate our Z-statistic. Let’s do this with R.
+Remember that the Z-statistic is defined as</p>
+<p><span class="math display">\[
+  Z = \frac{\bar x - \mu_0}{\sigma / \sqrt{n}} \sim \mathrm{Normal}(0,
+1)
+\]</span></p>
+</div>
+<div id="calculating-p-values" class="section level2">
+<h2>Calculating p-values</h2>
+<p>In R this looks like:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the z-statistic</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>z_stat</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.371708</span></span></code></pre></div>
+<p>To calculate a two-sided p-value, we need to find</p>
+<p><span class="math display">\[
+\begin{align}
+  P(|Z| \ge |2.37|)
+  &amp;= P(Z \ge 2.37) + P(Z \le -2.37) \\
+  &amp;= 1 - P(Z \le 2.37) + P(Z \le -2.37) \\
+  &amp;= 1 - \Phi(2.37) + \Phi(-2.37)
+\end{align}
+\]</span></p>
+<p>To do this we need to c.d.f. of a standard normal</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(distributions3)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">Normal</span>(<span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># make a standard normal r.v.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">cdf</span>(Z, <span class="fl">2.37</span>) <span class="sc">+</span> <span class="fu">cdf</span>(Z, <span class="sc">-</span><span class="fl">2.37</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.01778809</span></span></code></pre></div>
+<p>Note that we saved <code>z_stat</code> above so we could have also
+done</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">cdf</span>(Z, <span class="fu">abs</span>(z_stat)) <span class="sc">+</span> <span class="fu">cdf</span>(Z, <span class="sc">-</span><span class="fu">abs</span>(z_stat))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.01770607</span></span></code></pre></div>
+<p>which is slightly more accurate since there is no rounding error.</p>
+<p>So our p-value is about 0.0177. You should verify this with a
+Z-table. Note that you should get the <em>same</em> value from
+<code>cdf(Z, 2.37)</code> and looking up <code>2.37</code> on a
+Z-table.</p>
+<p>You may also have seen a different formula for the p-value of a
+two-sided Z-test, which makes use of the fact that the normal
+distribution is symmetric:</p>
+<p><span class="math display">\[
+\begin{align}
+  P(|Z| \ge |2.37|)
+  &amp;= 2 \cdot P(Z \le -|2.37|) \\
+  &amp;= 2 \cdot \Phi(-2.37)
+\end{align}
+\]</span></p>
+<p>Using this formula we get the same result:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">cdf</span>(Z, <span class="sc">-</span><span class="fl">2.37</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.01778809</span></span></code></pre></div>
+<p>Finally, sometimes we are interest in one sided Z-tests. For the
+test</p>
+<p><span class="math display">\[
+\begin{align}
+  H_0: \mu \le 3 \qquad H_A: \mu &gt; 3
+\end{align}
+\]</span></p>
+<p>the p-value is given by</p>
+<p><span class="math display">\[
+  P(Z &gt; 2.37)
+\]</span></p>
+<p>which we calculate with</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">cdf</span>(Z, <span class="fl">2.37</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.008894043</span></span></code></pre></div>
+<p>For the test</p>
+<p><span class="math display">\[
+  H_0: \mu \ge 3 \qquad H_A: \mu &lt; 3
+\]</span></p>
+<p>the p-value is given by</p>
+<p><span class="math display">\[
+  P(Z &lt; 2.37)
+\]</span></p>
+<p>which we calculate with</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdf</span>(Z, <span class="fl">2.37</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.991106</span></span></code></pre></div>
+</div>
+<div id="rejection-regions" class="section level2">
+<h2>Rejection regions</h2>
+<p><strong>Preface</strong>: I am strongly opposed to make a dichotomous
+“reject/fail to reject” decision for hypothesis tests. If you do a
+hypothesis test, you should report the p-value, period. Picking an
+arbitrary <span class="math inline">\(\alpha\)</span> level rejection
+threshold and treating it as a gold standard is ridiculous, as evidenced
+by 60 years of statistical literature laden with warnings about
+hypothesis testing. That said, sometimes it can be useful to think about
+when you reject a hypothesis test.</p>
+<p>We can think about three different rejection regions for a
+Z-test:</p>
+<ol style="list-style-type: decimal">
+<li>The rejection region in terms of the p-value</li>
+<li>The rejection region in terms of the test statistic</li>
+<li>The rejection region in terms of the sample mean</li>
+</ol>
+<p>For a given <span class="math inline">\(\alpha\)</span> level
+threshold, all of these rejection regions are equivalent. We’ll start by
+thinking about the rejection of a two-sided test. That is</p>
+<p><span class="math display">\[
+\begin{align}
+H_0 : \mu = \mu_0 \qquad H_A : \mu \neq \mu_0
+\end{align}
+\]</span></p>
+<p>We then calculate a test statistic <span class="math inline">\(Z_\text{obs}\)</span>, and a p-value <span class="math inline">\(P(|Z| &gt; |Z_\text{obs}|)\)</span> and reject
+when <span class="math inline">\(P(|Z| &gt; |Z_\text{obs}|) &lt;
+\alpha\)</span>. This defines our first rejection region. Using our
+observation from before, this is exactly equivalent to rejecting
+when</p>
+<p><span class="math display">\[
+\begin{align}
+P(|Z| &gt; |Z_\text{obs}|) &lt; \alpha
+&amp; \Longleftrightarrow 2 \cdot P(Z &lt; -|Z_\text{obs}|) &lt; \alpha
+\\
+&amp; \Longleftrightarrow P(Z &lt; -|Z_\text{obs}|) &lt; \alpha / 2
+\end{align}
+\]</span></p>
+<p>and this last statement is exactly the same as when <span class="math inline">\(Z_\text{obs} &lt; z_{\alpha / 2}\)</span> or <span class="math inline">\(z_{1 - \alpha / 2} &lt; Z_\text{obs}\)</span>.
+This is our second region region, in terms of the test statistic.
+Finally, recall that</p>
+<p><span class="math display">\[
+  Z_\text{obs} = \frac{\bar x - \mu_0}{\sigma / \sqrt{n}}
+\]</span></p>
+<p>So we take the conditions and rearrange to in terms of <span class="math inline">\(\bar x\)</span></p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\bar x - \mu_0}{\sigma / \sqrt{n}} &gt; z_{1 - \alpha / 2}
+&amp; \Longleftrightarrow \bar x &gt; \mu_0 + z_{1 - \alpha / 2}
+\frac{\sigma}{\sqrt n}
+\end{align}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\bar x - \mu_0}{\sigma / \sqrt{n}} &lt; z_{\alpha / 2}
+&amp; \Longleftrightarrow \bar x &lt; \mu_0 + z_{\alpha / 2}
+\frac{\sigma}{\sqrt n}
+\end{align}
+\]</span></p>
+<p>You can also think about this in terms of <span class="math inline">\(\mu_0\)</span>. We will reject the test when <span class="math inline">\(\mu_0\)</span> is not in</p>
+<p><span class="math display">\[
+\begin{align}
+\left( \bar x + z_{\alpha / 2} \frac{\sigma}{\sqrt n},
+  \bar x + z_{1 - \alpha / 2} \frac{\sigma}{\sqrt n} \right)
+\end{align}
+\]</span></p>
+<p>which you may recognize as the confidence interval for <span class="math inline">\(\mu\)</span>! So the confidence interval contains
+all the values of <span class="math inline">\(\mu_0\)</span> that we
+cannot reject at the <span class="math inline">\(\alpha\)</span> level.
+You can perform a similar calculation for a one sided test, resulting in
+a one-sided confidence bound, where one end of the interval is either
+<span class="math inline">\(\infty\)</span> or <span class="math inline">\(-\infty\)</span>.</p>
+</div>
+<div id="power-and-sample-size-calculations" class="section level2">
+<h2>Power and sample size calculations</h2>
+<div id="formulas-for-power" class="section level3">
+<h3>Formulas for power</h3>
+<p>We want to make sure that we actually reject our null hypothesis in
+the case that it is false. That is, we would like to make sure that our
+test has high power. Mathematically, this means that <span class="math inline">\(P(\text{reject } H_0 | H_0 \text{ is
+false})\)</span>. The problem here is that <span class="math inline">\(H_0\)</span> can be wrong in many different ways:
+it could be that the true <span class="math inline">\(\mu\)</span> is
+<span class="math inline">\(2\)</span>, it could be <span class="math inline">\(7\)</span>, it could be <span class="math inline">\(4.26\)</span>. So to calculate power as formulated
+above is not really possible. However, we can calculate power for
+specific versions of “<span class="math inline">\(H_0\)</span> is
+false”.</p>
+<p>Let’s consider the case that <span class="math inline">\(H_0\)</span>
+is false, and in particular the true value of <span class="math inline">\(\mu\)</span> is <span class="math inline">\(\mu_A\)</span>. In this case, the power of our
+test is <span class="math inline">\(P(\text{reject } H_0 | \mu =
+\mu_A)\)</span>. <a href="#rejection-regions">Recall</a> that we reject
+<span class="math inline">\(H_0\)</span> when <span class="math inline">\(\bar{x} &gt; \mu_0 + z_{1 - \alpha / 2}
+\frac{\sigma}{\sqrt n}\)</span> or <span class="math inline">\(\bar{x}
+&lt; \mu_0 + z_{\alpha / 2} \frac{\sigma}{\sqrt n}\)</span>, so the
+power of our test when <span class="math inline">\(\mu = \mu_A\)</span>
+is</p>
+<p><span class="math display">\[
+  P(\text{reject } H_0 \left | \mu = \mu_A \right .) =
+  P\left( \left . \bar x &gt; \mu_0 + z_{1 - \alpha / 2}
+    \frac{\sigma}{\sqrt n} \right | \mu =
+  \mu_A \right) + P\left( \left . \bar x &lt; \mu_0 + z_{\alpha / 2}
+    \frac{\sigma}{\sqrt n} \right | \mu = \mu_A \right).
+\]</span></p>
+<p>Remember that <span class="math inline">\(\bar X \sim \mathrm{Normal}
+\left(\mu, \frac{\sigma^2}{n} \right)\)</span>. This means that, given
+<span class="math inline">\(\mu = \mu_A\)</span>, <span class="math inline">\(\bar{x} \sim \mathrm{Normal} \left(\mu,
+\frac{\sigma^2}{n} \right)\)</span>, which let’s us calculate the
+probabilities we need to find the power:</p>
+<p><span class="math display">\[
+\begin{align}
+  P\left( \left . \bar{x} &gt; \mu_0 + z_{1 - \alpha / 2}
+\frac{\sigma}{\sqrt n} \right | \mu = \mu_A \right)
+  &amp;= P\left( \frac{\bar{x} - \mu_A}{\sigma/\sqrt{n}} &gt;
+\frac{\mu_0 + z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}} -
+\mu_A}{\sigma/\sqrt{n}} \right) \\
+  &amp;= P\left( Z &gt; \frac{\mu_0 - \mu_A}{\sigma/\sqrt{n}} +
+z_{1-\alpha/2} \right),
+\end{align}
+\]</span></p>
+<p>and similarly</p>
+<p><span class="math display">\[
+  P\left( \left . \bar{x} &lt; \mu_0 + z_{\alpha / 2}
+\frac{\sigma}{\sqrt n} \right | \mu = \mu_A\right) = P\left( Z &lt;
+\frac{\mu_0 - \mu_A}{\sigma/\sqrt{n}} + z_{\alpha/2} \right).
+\]</span></p>
+<p>So, the power of our test, <em>if the true population mean is <span class="math inline">\(\mu_A\)</span></em>, is</p>
+<p><span class="math display">\[
+\begin{align}
+  \text{Power} &amp;= P\left( Z &gt; \frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} + z_{1-\alpha/2} \right) + P\left( Z &lt;
+\frac{\mu_0 - \mu_A}{\sigma/\sqrt{n}} + z_{\alpha/2} \right) \\
+  &amp;= \left[1 - P\left( Z &lt; \frac{\mu_0 - \mu_A}{\sigma/\sqrt{n}}
++ z_{1-\alpha/2} \right)\right] + P\left( Z &lt; \frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} + z_{\alpha/2} \right)
+\end{align}
+\]</span></p>
+<p>Let’s calculate this if <span class="math inline">\(\mu_A =
+5\)</span>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>power_lower <span class="ot">&lt;-</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">10</span>)) <span class="sc">+</span> <span class="fu">quantile</span>(Z, <span class="fl">0.025</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>power_upper <span class="ot">&lt;-</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">10</span>)) <span class="sc">+</span> <span class="fu">quantile</span>(Z, <span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.025</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdf</span>(Z, power_lower) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">cdf</span>(Z, power_upper))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8853791</span></span></code></pre></div>
+<p>This means that the probability that we reject the null hypothesis
+(<span class="math inline">\(H_0: \mu = 3\)</span>) if the true mean is
+<span class="math inline">\(5\)</span> is about 0.89.</p>
+</div>
+<div id="formulas-for-sample-size-calculations" class="section level3">
+<h3>Formulas for sample size calculations</h3>
+<p>Often times researchers like to go in the other direction: aim for a
+specific level of power, and calculate how many observations are needed
+to reach that level. To achieve a power of <span class="math inline">\(1
+- \beta\)</span> for a one sample Z-test with <span class="math inline">\(H_0 : \mu = \mu_0\)</span>, you need</p>
+<p><span class="math display">\[
+  n \approx \left(
+    {
+      \sigma \cdot (z_{\alpha / 2} + z_\beta) \over
+      \mu_0 - \mu_A
+    }
+  \right)^2
+\]</span></p>
+<p>samples. If <span class="math inline">\(n\)</span> is not an integer,
+round up. Often, the denominator is thought of as the detectable
+difference. So, the question becomes how many samples are required to
+have sufficient power to detect a difference of some particular
+size.</p>
+<p>This equation is simply a rewrite of the equation presented above for
+power. Recall, the power for a two sided test is</p>
+<p><span class="math display">\[
+\text{Power} = P\left( Z &gt; \frac{\mu_0 - \mu_A}{\sigma/\sqrt{n}} +
+z_{1-\alpha/2} \right) + P\left( Z &lt; \frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} + z_{\alpha/2} \right).
+\]</span></p>
+<p>Usually, only one of these terms is contributing while the other is
+very close to zero. Let’s say the first term is the one clearly
+different from zero. To determine the sample size, we want to determine
+<span class="math inline">\(n\)</span> such that <span class="math inline">\(P\left( Z &gt; \frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} + z_{1-\alpha/2} \right) = 1-\beta\)</span>. Or,
+similarly, <span class="math inline">\(P\left( Z &lt; \frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} + z_{1-\alpha/2} \right) = \beta\)</span>. I.e.
+we need <span class="math inline">\(\frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} + z_{1-\alpha/2} = z_{\beta}\)</span>.</p>
+<p><span class="math display">\[
+\begin{align}
+z_{\beta} = \frac{\mu_0 - \mu_A}{\sigma/\sqrt{n}} + z_{1-\alpha/2} &amp;
+\Longleftrightarrow z_{\beta} - z_{1-\alpha/2} = \frac{\mu_0 -
+\mu_A}{\sigma/\sqrt{n}} \\
+  &amp; \Longleftrightarrow \sigma (z_{\beta} - z_{1-\alpha/2}) =
+(\mu_0-\mu_A)\sqrt{n} \\
+&amp; \Longleftrightarrow \frac{\sigma (z_{\beta} -
+z_{1-\alpha/2})}{\mu_0-\mu_A} = \sqrt{n} \\
+&amp; \Longleftrightarrow \left(\frac{\sigma (z_{\beta} -
+z_{1-\alpha/2})}{\mu_0-\mu_A}\right)^2 = n
+\end{align}
+\]</span></p>
+<p>Since <span class="math inline">\(z_{1-\alpha/2} =
+-z_{\alpha/2}\)</span>, we have the equation above:</p>
+<p><span class="math display">\[
+  \left(\frac{\sigma (z_{\beta} + z_{\alpha/2})}{\mu_0-\mu_A}\right)^2 =
+n.
+\]</span></p>
+<p>As an example, say the student prior to the experiment had determined
+that they wanted to test if the number of memes their professors know
+and love is 2. They want to make sure their sample size is large enough
+so that they are likely to reject the null hypothesis if the true number
+is 3. They determine that they want a probability of 0.9 of rejecting
+the null if the true number is 3. So, a sample size calculation looks
+like this:</p>
+<p><span class="math display">\[
+  n \approx \left(
+    {
+      2 \cdot (1.96 + 1.28) \over
+      2-3
+    }
+  \right)^2 = 41.99
+\]</span></p>
+<p>So to make sure that they reject the null hypothesis with a
+probability of 0.9 if the true value is 3, they would have to ask 53
+professors.</p>
+<p>Below is this same calculation done in <code>R</code>. Remember,
+<span class="math inline">\(\beta = 1-\text{Power}\)</span>. Note the
+small discrepancy. This is due to rounding error.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">*</span> (<span class="fu">quantile</span>(Z, <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">quantile</span>(Z, <span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.9</span>)) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">2</span>))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 42.02969</span></span></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

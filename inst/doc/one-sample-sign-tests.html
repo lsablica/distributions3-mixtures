@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>One sample sign tests</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">One sample sign tests</h1>
+
+
+
+<div id="problem-setup" class="section level2">
+<h2>Problem setup</h2>
+<p>Sometimes you want to do a Z-test or a T-test, but for some reason
+these tests are not appropriate. Your data may be skewed, or from a
+distribution with outliers, or non-normal in some other important way.
+In these circumstances a sign test is appropriate.</p>
+<p>For example, suppose you wander around Times Square and ask strangers
+for their salaries. Incomes are typically very skewed, and you might get
+a sample like:</p>
+<p><span class="math display">\[
+  8478, 21564, 36562, 176602, 9395, 18320, 50000,
+    2, 40298, 39, 10780, 2268583, 3404930
+\]</span></p>
+<p>If we look at a QQ plot, we see there are massive outliers:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>incomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8478</span>, <span class="dv">21564</span>, <span class="dv">36562</span>, <span class="dv">176602</span>, <span class="dv">9395</span>, <span class="dv">18320</span>, <span class="dv">50000</span>, <span class="dv">2</span>, <span class="dv">40298</span>, <span class="dv">39</span>, <span class="dv">10780</span>, <span class="dv">2268583</span>, <span class="dv">3404930</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(incomes)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(incomes)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Luckily, the sign test only requires independent samples for valid
+inference (as a consequence, it has been low power).</p>
+</div>
+<div id="null-hypothesis-and-test-statistic" class="section level2">
+<h2>Null hypothesis and test statistic</h2>
+<p>The sign test allows us to test whether the median of a distribution
+equals some hypothesized value. Let’s test whether our data is
+consistent with median of 50,000, which is close-ish to the median
+income in the U.S. if memory serves. That is</p>
+<p><span class="math display">\[
+  H_0: m = 50,000 \qquad H_A: \mu \neq 50,000
+\]</span></p>
+<p>where <span class="math inline">\(m\)</span> stands for the
+population median. The test statistic is then</p>
+<p><span class="math display">\[
+  B = \sum_{i=1}^n 1_{(50, 000, \infty)} (x_i) \sim \mathrm{Binomial}(N,
+0.5)
+\]</span></p>
+<p>Here <span class="math inline">\(B\)</span> is the number of data
+points observed that are strictly greater than the median, and <span class="math inline">\(N\)</span> is sample size <strong>after exact
+ties</strong> with the median have been removed. Forgetting to remove
+exact ties is a very frequent mistake when students do this test in
+classes I TA.</p>
+<p>If we sort the data we can see that <span class="math inline">\(B =
+3\)</span> and <span class="math inline">\(N = 12\)</span> in our
+case:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(incomes)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]       2      39    8478    9395   10780   18320   21564   36562   40298</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10]   50000  176602 2268583 3404930</span></span></code></pre></div>
+<p>We can verify this with R as well:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sum</span>(incomes <span class="sc">&gt;</span> <span class="dv">50000</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(incomes <span class="sc">!=</span> <span class="dv">50000</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span></code></pre></div>
+</div>
+<div id="calculating-p-values" class="section level2">
+<h2>Calculating p-values</h2>
+<p>To calculate a two-sided p-value, we need to find</p>
+<p><span class="math display">\[
+\begin{align}
+  2 \cdot \min(P(B \ge 3), P(B \le 3)) =
+  2 \cdot \min(1 - P(B \le 2), P(B \le 3))
+\end{align}
+\]</span></p>
+<p>To do this we need to c.d.f. of a binomial random variable:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(distributions3)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">Binomial</span>(n, <span class="fl">0.5</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">min</span>(<span class="fu">cdf</span>(X, b), <span class="dv">1</span> <span class="sc">-</span> <span class="fu">cdf</span>(X, b <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1459961</span></span></code></pre></div>
+<p>In practice computing the c.d.f. of binomial random variables is
+rather tedious and there aren’t great shortcuts for small samples. If
+you got a question like this on an exam, you’d want to use the binomial
+p.m.f. repeatedly, like this:</p>
+<p><span class="math display">\[
+\begin{align}
+P(B \le 3)
+&amp;= P(B = 0) + P(B = 1) + P(B = 2) + P(B = 3) \\
+&amp;= \binom{12}{0} 0.5^0 0.5^12 +
+  \binom{12}{1} 0.5^1 0.5^11 +
+  \binom{12}{2} 0.5^2 0.5^10 +
+  \binom{12}{3} 0.5^3 0.5^9
+\end{align}
+\]</span></p>
+<p>Finally, sometimes we are interest in one sided sign tests. For the
+test</p>
+<p><span class="math display">\[
+\begin{align}
+  H_0: m \le 3 \qquad H_A: m &gt; 3
+\end{align}
+\]</span></p>
+<p>the p-value is given by</p>
+<p><span class="math display">\[
+  P(B &gt; 3) = 1 - P(B \le 2)
+\]</span></p>
+<p>which we calculate with</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">cdf</span>(X, b <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9807129</span></span></code></pre></div>
+<p>For the test</p>
+<p><span class="math display">\[
+  H_0: m \ge 3 \qquad H_A: m &lt; 3
+\]</span></p>
+<p>the p-value is given by</p>
+<p><span class="math display">\[
+  P(B &lt; 3)
+\]</span></p>
+<p>which we calculate with</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdf</span>(X, b)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.07299805</span></span></code></pre></div>
+</div>
+<div id="using-the-binom.test-function" class="section level2">
+<h2>Using the binom.test() function</h2>
+<p>To verify results we can use the <code>binom.test()</code> from base
+R. The <code>x</code> argument gets the value of <span class="math inline">\(B\)</span>, <code>n</code> the value of <span class="math inline">\(N\)</span>, and <code>p = 0.5</code> for a test of
+the median.</p>
+<p>That is, for <span class="math inline">\(H_0 : m = 3\)</span> we
+would use</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">3</span>, <span class="at">n =</span> <span class="dv">12</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Exact binomial test</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  3 and 12</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; number of successes = 3, number of trials = 12, p-value = 0.146</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true probability of success is not equal to 0.5</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.05486064 0.57185846</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; probability of success </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   0.25</span></span></code></pre></div>
+<p>For <span class="math inline">\(H_0 : m \le 3\)</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">3</span>, <span class="at">n =</span> <span class="dv">12</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Exact binomial test</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  3 and 12</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; number of successes = 3, number of trials = 12, p-value = 0.9807</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true probability of success is greater than 0.5</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.07187026 1.00000000</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; probability of success </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   0.25</span></span></code></pre></div>
+<p>For <span class="math inline">\(H_0 : m \ge 3\)</span></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">3</span>, <span class="at">n =</span> <span class="dv">12</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Exact binomial test</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  3 and 12</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; number of successes = 3, number of trials = 12, p-value = 0.073</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true probability of success is less than 0.5</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.0000000 0.5273266</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; probability of success </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   0.25</span></span></code></pre></div>
+<p>All of these results agree with our manual computations, which is
+reassuring.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

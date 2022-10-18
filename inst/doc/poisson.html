@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>The Poisson distribution: From basic probability theory to regression models</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">The Poisson distribution: From basic
+probability theory to regression models</h1>
+
+
+
+<p>This vignette provides a brief introduction to the Poisson
+distribution for modeling count data along with a short case study about
+the goals scored at the 2018 FIFA World Cup. It is intended as an
+illustrative introduction that can be used as self-study material or as
+a class room exercise in a course covering GLMs.</p>
+<div id="the-poisson-distribution" class="section level2">
+<h2>The Poisson distribution</h2>
+<p>The classic basic probability distribution employed for modeling
+count data is the Poisson distribution. Its probability mass function
+<span class="math inline">\(f(y; \lambda)\)</span> yields the
+probability for a random variable <span class="math inline">\(Y\)</span>
+to take a count <span class="math inline">\(y \in \{0, 1, 2,
+\dots\}\)</span> based on the distribution parameter <span class="math inline">\(\lambda &gt; 0\)</span>:</p>
+<p><span class="math display">\[
+\text{Pr}(Y = y) = f(y; \lambda) = \frac{\exp\left(-\lambda\right) \cdot
+\lambda^y}{y!}.
+\]</span></p>
+<p>The Poisson distribution has many distinctive features, e.g., both
+its expectation and variance are equal and given by the parameter <span class="math inline">\(\lambda\)</span>. Thus, <span class="math inline">\(\text{E}(Y) = \lambda\)</span> and <span class="math inline">\(\text{Var}(Y) = \lambda\)</span>. Moreover, the
+Poisson distribution is related to other basic probability
+distributions. Namely, it can be obtained as the limit of the binomial
+distribution when the number of attempts is high and the success
+probability low. Or the Poisson distribution can be approximated by a
+normal distribution when <span class="math inline">\(\lambda\)</span> is
+large. See <span class="citation">Wikipedia (<a href="#ref-Wiki+Poisson" role="doc-biblioref">2022</a>)</span> for further properties and
+references.</p>
+<p>In the <code>distributions3</code> package Poisson distribution
+objects can be generated with the <code>Poisson()</code> function.
+Subsequently, the object can be handled like other distribution objects
+in <code>distributions3</code>: print; extract mean and variance;
+evaluate density, cumulative distribution, or quantile function; or
+simulate random samples.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;distributions3&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">Poisson</span>(<span class="at">lambda =</span> <span class="fl">1.5</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Y)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Poisson distribution (lambda = 1.5)&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Y)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.5</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">variance</span>(Y)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.5</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(Y, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.22313016 0.33469524 0.25102143 0.12551072 0.04706652 0.01411996</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cdf</span>(Y, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2231302 0.5578254 0.8088468 0.9343575 0.9814241 0.9955440</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(Y, <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0 1 3</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">random</span>(Y, <span class="dv">5</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3 1 1 2 3</span></span></code></pre></div>
+<p>Using the <code>plot()</code> method the distribution can also be
+visualized which we use here to show how the probabilities for the
+counts <span class="math inline">\(0, 1, \dots, 15\)</span> change when
+the parameter is <span class="math inline">\(\lambda = 0.5, 2, 5,
+10\)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Poisson</span>(<span class="fl">0.5</span>), <span class="at">main =</span> <span class="fu">expression</span>(lambda <span class="sc">==</span> <span class="fl">0.5</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Poisson</span>(<span class="dv">2</span>),   <span class="at">main =</span> <span class="fu">expression</span>(lambda <span class="sc">==</span> <span class="dv">2</span>),   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Poisson</span>(<span class="dv">5</span>),   <span class="at">main =</span> <span class="fu">expression</span>(lambda <span class="sc">==</span> <span class="dv">5</span>),   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Poisson</span>(<span class="dv">10</span>),  <span class="at">main =</span> <span class="fu">expression</span>(lambda <span class="sc">==</span> <span class="dv">10</span>),  <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" width="100%" /></p>
+<p>In this vignette we will illustrate how this infrastructure can be
+leveraged to obtain predicted probabilities for the number of goals in
+soccer matches from the 2018 FIFA World Cup.</p>
+</div>
+<div id="goals-in-the-2018-fifa-world-cup" class="section level2">
+<h2>Goals in the 2018 FIFA World Cup</h2>
+<p>To investigate the number of goals scored per match in the 2018 FIFA
+World Cup, the <code>FIFA2018</code> data set provides two rows, one for
+each team, for each of the 64 matches during the tournament. In the
+following, we treat the goals scored by the two teams in the same match
+as independent which is a realistic assumption for this particular data
+set. We just remark briefly that there are also bivariate
+generalizations of the Poisson distribution that would allow for
+correlated observations but which are not considered here.</p>
+<p>In addition to the goals, the data set provides some basic
+meta-information for the matches (an ID, team name abbreviations, type
+of match, group vs. knockout stage) as well as some further covariates
+that we will revisit later in this document. The data looks like
+this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;FIFA2018&quot;</span>, <span class="at">package =</span> <span class="st">&quot;distributions3&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FIFA2018)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   goals team match type stage logability difference</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1     5  RUS     1    A group  0.1530732  0.8638406</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2     0  KSA     1    A group -0.7107673 -0.8638406</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3     0  EGY     2    A group -0.2066409 -0.4438080</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4     1  URU     2    A group  0.2371671  0.4438080</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 5     3  RUS     3    A group  0.1530732  0.3597142</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6     1  EGY     3    A group -0.2066409 -0.3597142</span></span></code></pre></div>
+<p>For now, we will focus on the <code>goals</code> variable only. A
+brief summary yields</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FIFA2018<span class="sc">$</span>goals)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   0.000   0.000   1.000   1.297   2.000   6.000</span></span></code></pre></div>
+<p>showing that the teams scored between <span class="math inline">\(0\)</span> and <span class="math inline">\(6\)</span> goals per match with an average of
+<span class="math inline">\(\bar y = 1.297\)</span> from the
+observations <span class="math inline">\(y_i\)</span> (<span class="math inline">\(i = 1, \dots, 128\)</span>). The corresponding
+table of observed relative frequencies is:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(FIFA2018<span class="sc">$</span>goals))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>observed</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##         0         1         2         3         4         5         6 </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.2578125 0.3750000 0.2500000 0.0781250 0.0156250 0.0156250 0.0078125</span></span></code></pre></div>
+<p>(Note that in recent versions of R using <code>proportions()</code>
+rather than <code>prop.table()</code> is recommended.)</p>
+<p>This confirms that goals are relatively rare events in a soccer game
+with each team scoring zero to two goals per match in almost 90 percent
+of the matches. Below we show that this observed frequency distribution
+can be approximated very well by a Poisson distribution which can
+subsequently be used to obtain predicted probabilities for the goals
+scored in a match.</p>
+</div>
+<div id="basic-fitted-distribution" class="section level2">
+<h2>Basic fitted distribution</h2>
+<p>In a first step, we simply assume that goals are scored with a
+constant mean over all teams and matches and hence just fit a single
+Poisson distribution for the number of goals. To do so, we obtain a
+point estimate of the Poisson parameter by using the empirical mean
+<span class="math inline">\(\hat \lambda = \bar y = 1.297\)</span> and
+set up the corresponding distribution object:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p_const <span class="ot">&lt;-</span> <span class="fu">Poisson</span>(<span class="at">lambda =</span> <span class="fu">mean</span>(FIFA2018<span class="sc">$</span>goals))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p_const</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Poisson distribution (lambda = 1.297)&quot;</span></span></code></pre></div>
+<p>In the technical details below we show that this actually corresponds
+to the maximum likelihood estimation for this distribution.</p>
+<p>As already illustrated above, the expected probabilities of observing
+counts of <span class="math inline">\(0, 1, \dots, 6\)</span> goals for
+this Poisson distribution can be extracted using the <code>pdf()</code>
+method. A comparison with the observed empirical frequencies yields</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>expected <span class="ot">&lt;-</span> <span class="fu">pdf</span>(p_const, <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(observed, expected)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    observed    expected</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 0 0.2578125 0.273384787</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.3750000 0.354545896</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.2500000 0.229900854</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.0781250 0.099384223</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.0156250 0.032222229</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 0.0156250 0.008357641</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 0.0078125 0.001806469</span></span></code></pre></div>
+<p>By and large, all observed and expected frequencies are rather close.
+However, it is not reasonable that all teams score goals with the same
+probabilities, which would imply that winning or losing could just be
+attributed to “luck” or “random variation” alone. Therefore, while a
+certain level of randomness will certainly remain, we should also
+consider that there are stronger and weaker teams in the tournament.</p>
+</div>
+<div id="poisson-regression-and-probabilistic-forecasting" class="section level2">
+<h2>Poisson regression and probabilistic forecasting</h2>
+<p>To account for different expected performances from the teams in the
+2018 FIFA World Cup, the <code>FIFA2018</code> data provides an
+estimated <code>logability</code> for each team. These have been
+estimated by <span class="citation">Zeileis, Leitner, and Hornik (<a href="#ref-Zeileis+Leitner+Hornik:2018" role="doc-biblioref">2018</a>)</span> prior to the start of the
+tournament (2018-05-20) based on quoted odds from 26 online bookmakers
+using the bookmaker consensus model of <span class="citation">Leitner,
+Zeileis, and Hornik (<a href="#ref-Leitner+Zeileis+Hornik:2010" role="doc-biblioref">2010</a>)</span>. The <code>difference</code> in
+<code>logability</code> between a team and its opponent is a useful
+predictor for the number of <code>goals</code> scored.</p>
+<p>Consequently, we fit a generalized linear model (GLM) to the data
+that links the expected number of goals per team/match <span class="math inline">\(\lambda_i\)</span> to the linear predictor <span class="math inline">\(x_i^\top \beta\)</span> with regressor vector
+<span class="math inline">\(x_i^\top = (1,
+\mathtt{difference}_i)\)</span> and corresponding coefficient vector
+<span class="math inline">\(\beta\)</span> using a log-link: <span class="math inline">\(\log(\lambda_i) = x_i^\top \beta\)</span>. The
+maximum likelihood estimator <span class="math inline">\(\hat
+\beta\)</span> with corresponding inference, predictions, residuals,
+etc. can be obtained using the <code>glm()</code> function from base R
+with <code>family = poisson</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glm</span>(goals <span class="sc">~</span> difference, <span class="at">data =</span> FIFA2018, <span class="at">family =</span> poisson)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">## glm(formula = goals ~ difference, family = poisson, data = FIFA2018)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">## -2.1437  -1.1546  -0.1746   0.5278   2.3273  </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  0.21272    0.08125   2.618  0.00885 ** </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">## difference   0.41344    0.10579   3.908 9.31e-05 ***</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="do">## (Dispersion parameter for poisson family taken to be 1)</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="do">##     Null deviance: 144.20  on 127  degrees of freedom</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual deviance: 128.69  on 126  degrees of freedom</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="do">## AIC: 359.39</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 5</span></span></code></pre></div>
+<p>Both parameters can be interpreted. First, the intercept corresponds
+to the expected log-goals per team in a match of two equally strong
+teams, i.e., with zero difference in log-abilities. The corresponding
+prediction for the number of goals can either be obtained manually from
+the extracted <code>coef()</code> by applying <code>exp()</code> (as the
+inverse of the log-link).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lambda_zero <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(m)[<span class="dv">1</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lambda_zero</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">##     1.23704</span></span></code></pre></div>
+<p>Or equivalently the <code>predict()</code> function can be used with
+<code>type = &quot;response&quot;</code> in order to get the expected <span class="math inline">\(\hat \lambda_i\)</span> (rather than just the
+linear predictor <span class="math inline">\(x_i^\top \hat
+\beta\)</span> that is predicted by default).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">difference =</span> <span class="dv">0</span>), <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">##       1 </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1.23704</span></span></code></pre></div>
+<p>As above, we can also set up a <code>Poisson()</code> distribution
+object and obtain the associated expected probability distribution for
+zero to six goals in a mathc of two equally strong teams:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p_zero <span class="ot">&lt;-</span> <span class="fu">Poisson</span>(<span class="at">lambda =</span> lambda_zero)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(p_zero, <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.290242139 0.359041061 0.222074031 0.091571467 0.028319386 0.007006441</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [7] 0.001444541</span></span></code></pre></div>
+<p>Second, the slope of <span class="math inline">\(0.413\)</span> can
+be interpreted as an ability elasticity of the number of goals scored.
+This is because the difference of the log-abilities can also be
+understood as the log of the ability ratio. Thus, when the ability ratio
+increases by <span class="math inline">\(1\)</span> percent, the
+expected number of goals increases approximately by <span class="math inline">\(0.413\)</span> percent.</p>
+<p>This yields a different predicted Poisson distribution for each
+team/match in the tournament. We can set up the vector of all <span class="math inline">\(128\)</span> <code>Poisson()</code> distribution
+objects by extracting the vector of all fitted point estimates <span class="math inline">\((\hat \lambda_1, \dots, \hat
+\lambda_{128})^\top\)</span>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p_reg <span class="ot">&lt;-</span> <span class="fu">Poisson</span>(<span class="at">lambda =</span> <span class="fu">fitted</span>(m))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(p_reg)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 128</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p_reg)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">##                                        1 </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 1.7680)&quot; </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">##                                        2 </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 0.8655)&quot; </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">##                                        3 </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 1.0297)&quot; </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">##                                        4 </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 1.4862)&quot; </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">##                                        5 </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 1.4354)&quot; </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="do">##                                        6 </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 1.0661)&quot;</span></span></code></pre></div>
+<p>Note that specific elements from the vector <code>p_reg</code> of
+Poisson distributions can be extracted as usual, e.g., with an index
+like <code>p_reg[i]</code> or using the <code>head()</code> and
+<code>tail()</code> functions etc.</p>
+<p>As an illustration, the following goal distributions could be
+expected for the FIFA World Cup final (in the last two rows of the data)
+that France won 4-2 against Croatia:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(FIFA2018, <span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">##     goals team match  type    stage logability difference</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 127     4  FRA    64 Final knockout  0.8865638  0.6289619</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 128     2  CRO    64 Final knockout  0.2576019 -0.6289619</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>p_final <span class="ot">&lt;-</span> <span class="fu">tail</span>(p_reg, <span class="dv">2</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>p_final</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">##                                      127 </span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 1.6044)&quot; </span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">##                                      128 </span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="do">## &quot;Poisson distribution (lambda = 0.9538)&quot;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(p_final, <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">##           d_0       d_1       d_2        d_3        d_4         d_5</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 127 0.2010078 0.3224993 0.2587107 0.13835949 0.05549639 0.017807808</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 128 0.3852791 0.3674743 0.1752462 0.05571586 0.01328527 0.002534265</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="do">##              d_6</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 127 0.0047618419</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 128 0.0004028582</span></span></code></pre></div>
+<p>This shows that France was expected to score more goals than Croatia
+but both teams scored more goals than expected, albeit not unlikely
+many.</p>
+</div>
+<div id="further-details-and-extensions" class="section level2">
+<h2>Further details and extensions</h2>
+<p>Assuming independence of the number of goals scored, we can obtain
+the table of possible match results (after normal time) by multiplying
+the marginal probabilities (again only up to six goals). In R this be
+done using the <code>outer()</code> function which by default performs a
+multiplication of its arguments.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">outer</span>(<span class="fu">pdf</span>(p_final[<span class="dv">1</span>], <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">pdf</span>(p_final[<span class="dv">2</span>], <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> res, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">##       [,1]  [,2] [,3] [,4] [,5] [,6] [,7]</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]  7.74  7.39 3.52 1.12 0.27 0.05 0.01</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,] 12.43 11.85 5.65 1.80 0.43 0.08 0.01</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [3,]  9.97  9.51 4.53 1.44 0.34 0.07 0.01</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [4,]  5.33  5.08 2.42 0.77 0.18 0.04 0.01</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [5,]  2.14  2.04 0.97 0.31 0.07 0.01 0.00</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [6,]  0.69  0.65 0.31 0.10 0.02 0.00 0.00</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [7,]  0.18  0.17 0.08 0.03 0.01 0.00 0.00</span></span></code></pre></div>
+<p>For example, we can see from this table that the expected probability
+for France winning against Croatia 1-0 is <span class="math inline">\(12.43\)</span> percent while the probability that
+France loses 0-1 is only <span class="math inline">\(7.39\)</span>
+percent.</p>
+<p>The advantage of France can also be brought out more clearly by
+aggregating the probabilities for winning (lower triangular matrix), a
+draw (diagonal), or losing (upper triangular matrix). In R these can be
+computed as:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res[<span class="fu">lower.tri</span>(res)]) <span class="do">## France wins</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.5245018</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(res))           <span class="do">## draw</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2497855</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res[<span class="fu">upper.tri</span>(res)]) <span class="do">## France loses</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2242939</span></span></code></pre></div>
+<p>Note that these probabilities do not sum up to <span class="math inline">\(1\)</span> because we only considered up to six
+goals per team but more goals can actually occur with a small
+probability.</p>
+<p>Next, we update the expected frequencies table by averaging across
+the expectations per team/match from the regression model.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>expected <span class="ot">&lt;-</span> <span class="fu">pdf</span>(p_reg, <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(expected)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">##         d_0       d_1       d_2        d_3         d_4         d_5          d_6</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.1706693 0.3017480 0.2667494 0.15720674 0.069486450 0.024570788 0.0072403041</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.4208316 0.3642392 0.1576286 0.04547703 0.009840349 0.001703409 0.0002457231</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.3571261 0.3677207 0.1893148 0.06497703 0.016726166 0.003444474 0.0005911098</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.2262357 0.3362265 0.2498462 0.12377196 0.045986787 0.013668909 0.0033857384</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 0.2380213 0.3416546 0.2452047 0.11732187 0.042100811 0.012086260 0.0028914265</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 0.3443506 0.3671104 0.1956873 0.06954039 0.018534163 0.003951835 0.0007021718</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>expected <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(expected)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(observed, expected)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="do">##    observed    expected</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 0 0.2578125 0.294374450</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.3750000 0.340171469</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.2500000 0.214456075</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.0781250 0.098236077</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.0156250 0.036594546</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 0.0156250 0.011726654</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 0.0078125 0.003332718</span></span></code></pre></div>
+<p>As before, observed and expected frequencies are reasonably close,
+emphasizing that the model has a good marginal fit for this data. To
+bring out the discrepancies graphically we show the frequencies on a
+square root scale using a so-called <em>hanging rootogram</em> <span class="citation">(<a href="#ref-Kleiber+Zeileis:2016" role="doc-biblioref">Kleiber and Zeileis 2016</a>)</span>. The gray bars
+represent the square-root of the observed frequencies “hanging” from the
+square-root of the expected frequencies in the red line. The offset
+around the x-axis thus shows the difference between the two frequencies
+which is reasonably close to zero.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">barplot</span>(<span class="fu">sqrt</span>(observed), <span class="at">offset =</span> <span class="fu">sqrt</span>(expected) <span class="sc">-</span> <span class="fu">sqrt</span>(observed),</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Goals&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;sqrt(Frequency)&quot;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(bp, <span class="fu">sqrt</span>(expected), <span class="at">type =</span> <span class="st">&quot;o&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" width="60%" /></p>
+<p>Finally, we want to point out that while the log-abilities (and thus
+their differences) had been obtained based on bookmakers odds prior to
+the tournament, the calibration of the intercept and slope coefficients
+was done “in-sample”. This means that we have used the data from the
+tournament itself for estimating the GLM and the evaluation above can
+only be made <em>ex post</em>. Alternatively, one could have used
+previous FIFA World Cups for calibrating the coefficients so that
+probabilistic forecasts for the outcome of all matches (and thus the
+entire tournament) could have been obtained <em>ex ante</em>. This is
+the approach used by <span class="citation">Groll et al. (<a href="#ref-Groll+Ley+Schauberger:2019" role="doc-biblioref">2019</a>)</span> and <span class="citation">Groll
+et al. (<a href="#ref-Groll+Hvattum+Ley:2021" role="doc-biblioref">2021</a>)</span> who additionally added further
+explanatory variables and used flexible machine learning regression
+techniques rather than a simple Poisson GLM.</p>
+</div>
+<div id="technical-details-maximum-likelihood-estimation-of-lambda" class="section level2">
+<h2>Technical details: Maximum likelihood estimation of <span class="math inline">\(\lambda\)</span></h2>
+<p>Fitting a single Poisson distribution with constant <span class="math inline">\(\lambda\)</span> to <span class="math inline">\(n\)</span> independent observations <span class="math inline">\(y_1, \dots, y_n\)</span> using maximum likelihood
+estimation can be done analytically using basic algebra. First, we set
+up the log-likelihood function <span class="math inline">\(\ell\)</span>
+as the sum of the log-densities per observation:</p>
+<p><span class="math display">\[
+\begin{align*}
+  \ell(\lambda; y_1, \dots, y_n) &amp; = \sum_{i = 1}^n \log f(y_i;
+\lambda) \\
+\end{align*}
+\]</span></p>
+<p>For solving the first-order condition analytically below we need the
+score function, i.e., the derivative of the log-likelihood with respect
+to the parameter <span class="math inline">\(\lambda\)</span>. The
+derivative of the sum is simply the sum of the derivatives:</p>
+<p><span class="math display">\[
+\begin{align*}
+\ell^\prime(\lambda; y_1, \dots, y_n)
+    &amp; = \sum_{i = 1}^n \left\{ \log f(y_i; \lambda) \right\}^\prime
+\\
+    &amp; = \sum_{i = 1}^n \left\{ -\lambda + y_i \cdot \log(\lambda) -
+\log(y_i!) \right\}^\prime \\
+    &amp; = \sum_{i = 1}^n \left\{ -1 + y_i \cdot \frac{1}{\lambda}
+\right\} \\
+    &amp; = -n + \frac{1}{\lambda} \sum_{i = 1}^n y_i
+\end{align*}
+\]</span></p>
+<p>The first-order condition for maximizing the log-likelihood sets its
+derivative to zero. This can be solved as follows:</p>
+<p><span class="math display">\[
+\begin{align*}
+  \ell^\prime(\lambda; y_1, \dots, y_n) &amp; = 0 \\
+  -n + \frac{1}{\lambda} \sum_{i = 1}^n y_i &amp; = 0 \\
+  n \cdot \lambda &amp; = \sum_{i = 1}^n y_i \\
+  \lambda &amp; = \frac{1}{n} \sum_{i = 1}^n y_i = \bar y
+\end{align*}
+\]</span></p>
+<p>Thus, the maximum likelihood estimator is simply the empirical mean
+<span class="math inline">\(\hat \lambda = \bar y.\)</span></p>
+<p>Unfortunately, when the parameter <span class="math inline">\(\lambda\)</span> is not constant but depends on a
+linear predictor through a log link <span class="math inline">\(\log(\lambda_i) = x_i^\top \beta\)</span>, the
+corresponding log-likelihood of the regression coefficients <span class="math inline">\(\beta\)</span> can not be maximized as easily.
+There is no closed-form solution for the maximum likelihood estimator
+<span class="math inline">\(\hat \beta\)</span> which is why the
+<code>glm()</code> function employs an iterative numerical algorithm
+(so-called iteratively weighted least squares) for fitting the
+model.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Groll+Hvattum+Ley:2021" class="csl-entry">
+Groll, Andreas, Lars Magnus Hvattum, Christophe Ley, Franziska Popp,
+Gunther Schauberger, Hans Van Eetvelde, and Achim Zeileis. 2021.
+<span>“Hybrid Machine Learning Forecasts for the <span>UEFA</span>
+<span>EURO</span> 2020.”</span> arXiv 2106.05799. arXiv.org E-Print
+Archive. <a href="https://arxiv.org/abs/2106.05799">https://arxiv.org/abs/2106.05799</a>.
+</div>
+<div id="ref-Groll+Ley+Schauberger:2019" class="csl-entry">
+Groll, Andreas, Christophe Ley, Gunther Schauberger, and Hans Van
+Eetvelde. 2019. <span>“A Hybrid Random Forest to Predict Soccer Matches
+in International Tournaments.”</span> <em>Journal of Quantitative
+Analysis in Sports</em> 15 (4): 271–87. <a href="https://doi.org/10.1515/jqas-2018-0060">https://doi.org/10.1515/jqas-2018-0060</a>.
+</div>
+<div id="ref-Kleiber+Zeileis:2016" class="csl-entry">
+Kleiber, Christian, and Achim Zeileis. 2016. <span>“Visualizing Count
+Data Regressions Using Rootograms.”</span> <em>The American
+Statistician</em> 70 (3): 296–303. <a href="https://doi.org/10.1080/00031305.2016.1173590">https://doi.org/10.1080/00031305.2016.1173590</a>.
+</div>
+<div id="ref-Leitner+Zeileis+Hornik:2010" class="csl-entry">
+Leitner, Christoph, Achim Zeileis, and Kurt Hornik. 2010.
+<span>“Forecasting Sports Tournaments by Ratings of (Prob)abilities: A
+Comparison for the <span>EURO</span> 2008.”</span> <em>International
+Journal of Forecasting</em> 26 (3): 471–81. <a href="https://doi.org/10.1016/j.ijforecast.2009.10.001">https://doi.org/10.1016/j.ijforecast.2009.10.001</a>.
+</div>
+<div id="ref-Wiki+Poisson" class="csl-entry">
+Wikipedia. 2022. <span>“<span>P</span>oisson Distribution —
+<span>W</span>ikipedia<span>,</span> the Free Encyclopedia.”</span> URL
+<a href="https://en.wikipedia.org/wiki/Poisson_distribution" class="uri">https://en.wikipedia.org/wiki/Poisson_distribution</a>,
+accessed 2022-02-21.
+</div>
+<div id="ref-Zeileis+Leitner+Hornik:2018" class="csl-entry">
+Zeileis, Achim, Christoph Leitner, and Kurt Hornik. 2018.
+<span>“Probabilistic Forecasts for the 2018 <span>FIFA</span>
+<span>W</span>orld <span>C</span>up Based on the Bookmaker Consensus
+Model.”</span> Working Paper 2018-09. Working Papers in Economics;
+Statistics, Research Platform Empirical; Experimental Economics,
+Universität Innsbruck. <a href="https://EconPapers.RePEc.org/RePEc:inn:wpaper:2018-09">https://EconPapers.RePEc.org/RePEc:inn:wpaper:2018-09</a>.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
