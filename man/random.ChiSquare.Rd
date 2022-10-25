@@ -7,9 +7,9 @@
 \method{random}{ChiSquare}(x, n = 1L, drop = TRUE, ...)
 }
 \arguments{
-\item{x}{A \code{ChiSquare} object created by a call to \code{\link[=ChiSquare]{ChiSquare()}}.}
+\item{x}{A `ChiSquare` object created by a call to [ChiSquare()].}
 
-\item{n}{The number of samples to draw. Defaults to \code{1L}.}
+\item{n}{The number of samples to draw. Defaults to `1L`.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -17,9 +17,9 @@
 catch mispellings or other possible errors.}
 }
 \value{
-In case of a single distribution object or \code{n = 1}, either a numeric
-vector of length \code{n} (if \code{drop = TRUE}, default) or a \code{matrix} with \code{n} columns
-(if \code{drop = FALSE}).
+In case of a single distribution object or `n = 1`, either a numeric
+  vector of length `n` (if `drop = TRUE`, default) or a `matrix` with `n` columns
+  (if `drop = FALSE`).
 }
 \description{
 Draw a random sample from a chi square distribution

@@ -7,7 +7,7 @@
 \method{quantile}{StudentsT}(x, probs, drop = TRUE, elementwise = NULL, ...)
 }
 \arguments{
-\item{x}{A \code{StudentsT} object created by a call to \code{\link[=StudentsT]{StudentsT()}}.}
+\item{x}{A `StudentsT` object created by a call to [StudentsT()].}
 
 \item{probs}{A vector of probabilities.}
 
@@ -26,21 +26,21 @@ possible errors.}
 }
 \value{
 In case of a single distribution object, either a numeric
-vector of length \code{probs} (if \code{drop = TRUE}, default) or a \code{matrix} with
-\code{length(probs)} columns (if \code{drop = FALSE}). In case of a vectorized
-distribution object, a matrix with \code{length(probs)} columns containing all
-possible combinations.
+  vector of length `probs` (if `drop = TRUE`, default) or a `matrix` with
+  `length(probs)` columns (if `drop = FALSE`). In case of a vectorized
+  distribution object, a matrix with `length(probs)` columns containing all
+  possible combinations.
 }
 \description{
-Please see the documentation of \code{\link[=StudentsT]{StudentsT()}} for some properties
+Please see the documentation of [StudentsT()] for some properties
 of the StudentsT distribution, as well as extensive examples
 showing to how calculate p-values and confidence intervals.
-\code{quantile()}
+`quantile()`
 }
 \details{
 This function returns the same values that you get from a Z-table. Note
-\code{quantile()} is the inverse of \code{cdf()}. Please see the documentation of
-\code{\link[=StudentsT]{StudentsT()}} for some properties
+`quantile()` is the inverse of `cdf()`. Please see the documentation of
+[StudentsT()] for some properties
 of the StudentsT distribution, as well as extensive examples
 showing to how calculate p-values and confidence intervals.
 }

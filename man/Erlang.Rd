@@ -12,7 +12,7 @@ Erlang(k, lambda)
 \item{lambda}{The rate parameter. Can be any positive number.}
 }
 \value{
-An \code{Erlang} object.
+An `Erlang` object.
 }
 \description{
 The Erlang distribution is a two-parameter family of continuous probability

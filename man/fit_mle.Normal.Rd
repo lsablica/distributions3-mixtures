@@ -7,14 +7,14 @@
 \method{fit_mle}{Normal}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Normal} object created by a call to \code{\link[=Normal]{Normal()}}.}
+\item{d}{A `Normal` object created by a call to [Normal()].}
 
 \item{x}{A vector of data.}
 
 \item{...}{Unused.}
 }
 \value{
-A \code{Normal} object.
+A `Normal` object.
 }
 \description{
 Fit a Normal distribution to data

@@ -7,7 +7,7 @@
 \method{support}{HurdleNegativeBinomial}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{HurdleNegativeBinomial} object created by a call to \code{\link[=HurdleNegativeBinomial]{HurdleNegativeBinomial()}}.}
+\item{d}{An `HurdleNegativeBinomial` object created by a call to [HurdleNegativeBinomial()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

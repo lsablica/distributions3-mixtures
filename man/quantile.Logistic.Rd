@@ -7,7 +7,7 @@
 \method{quantile}{Logistic}(x, probs, drop = TRUE, elementwise = NULL, ...)
 }
 \arguments{
-\item{x}{A \code{Logistic} object created by a call to \code{\link[=Logistic]{Logistic()}}.}
+\item{x}{A `Logistic` object created by a call to [Logistic()].}
 
 \item{probs}{A vector of probabilities.}
 
@@ -26,10 +26,10 @@ possible errors.}
 }
 \value{
 In case of a single distribution object, either a numeric
-vector of length \code{probs} (if \code{drop = TRUE}, default) or a \code{matrix} with
-\code{length(probs)} columns (if \code{drop = FALSE}). In case of a vectorized
-distribution object, a matrix with \code{length(probs)} columns containing all
-possible combinations.
+  vector of length `probs` (if `drop = TRUE`, default) or a `matrix` with
+  `length(probs)` columns (if `drop = FALSE`). In case of a vectorized
+  distribution object, a matrix with `length(probs)` columns containing all
+  possible combinations.
 }
 \description{
 Determine quantiles of a Logistic distribution

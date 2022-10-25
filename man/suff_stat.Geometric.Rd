@@ -7,7 +7,7 @@
 \method{suff_stat}{Geometric}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Geometric} object.}
+\item{d}{A `Geometric` object.}
 
 \item{x}{A vector of zeroes and ones.}
 
@@ -15,11 +15,10 @@
 }
 \value{
 A named list of the sufficient statistics of the Geometric
-distribution:
-\itemize{
-\item \code{trials}: The total number of trials ran until the first success.
-\item \code{experiments}: The number of experiments run.
-}
+  distribution:
+
+  - `trials`: The total number of trials ran until the first success.
+  - `experiments`: The number of experiments run.
 }
 \description{
 Compute the sufficient statistics for the Geometric distribution from data

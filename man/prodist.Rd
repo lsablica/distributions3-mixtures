@@ -45,7 +45,7 @@ An object inheriting from \code{distribution}.
 }
 \description{
 Generic function with methods for various model classes for extracting
-fitted (in-sample) or predicted (out-of-sample) probability \code{distributions3}
+fitted (in-sample) or predicted (out-of-sample) probability `distributions3`
 objects.
 }
 \details{

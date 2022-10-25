@@ -7,9 +7,9 @@
 \method{random}{Beta}(x, n = 1L, drop = TRUE, ...)
 }
 \arguments{
-\item{x}{A \code{Beta} object created by a call to \code{\link[=Beta]{Beta()}}.}
+\item{x}{A `Beta` object created by a call to [Beta()].}
 
-\item{n}{The number of samples to draw. Defaults to \code{1L}.}
+\item{n}{The number of samples to draw. Defaults to `1L`.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -17,9 +17,9 @@
 catch mispellings or other possible errors.}
 }
 \value{
-Values in \verb{[0, 1]}. In case of a single distribution object or \code{n = 1}, either a numeric
-vector of length \code{n} (if \code{drop = TRUE}, default) or a \code{matrix} with \code{n} columns
-(if \code{drop = FALSE}).
+Values in `[0, 1]`. In case of a single distribution object or `n = 1`, either a numeric
+  vector of length `n` (if `drop = TRUE`, default) or a `matrix` with `n` columns
+  (if `drop = FALSE`).
 }
 \description{
 Draw a random sample from a Beta distribution

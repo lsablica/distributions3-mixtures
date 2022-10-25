@@ -10,10 +10,10 @@ ZIPoisson(lambda, pi)
 \item{lambda}{Parameter of the Poisson component of the distribution.
 Can be any positive number.}
 
-\item{pi}{Zero-inflation probability, can be any value in \verb{[0, 1]}.}
+\item{pi}{Zero-inflation probability, can be any value in `[0, 1]`.}
 }
 \value{
-A \code{ZIPoisson} object.
+A `ZIPoisson` object.
 }
 \description{
 Zero-inflated Poisson distributions are frequently used to model counts
@@ -21,43 +21,43 @@ with many zero observations.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a zero-inflated Poisson random variable with parameter
-\code{lambda} = \eqn{\lambda}.
+  In the following, let \eqn{X} be a zero-inflated Poisson random variable with parameter
+  `lambda` = \eqn{\lambda}.
 
-\strong{Support}: \eqn{\{0, 1, 2, 3, ...\}}{{0, 1, 2, 3, ...}}
+  **Support**: \eqn{\{0, 1, 2, 3, ...\}}{{0, 1, 2, 3, ...}}
 
-\strong{Mean}: \eqn{(1 - \pi) \cdot \lambda}
+  **Mean**: \eqn{(1 - \pi) \cdot \lambda}
 
-\strong{Variance}: \eqn{(1 - \pi) \cdot \lambda \cdot (1 + \pi \cdot \lambda)}
+  **Variance**: \eqn{(1 - \pi) \cdot \lambda \cdot (1 + \pi \cdot \lambda)}
 
-\strong{Probability mass function (p.m.f.)}:
+  **Probability mass function (p.m.f.)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \pi \cdot I_{0}(k) + (1 - \pi) \cdot f(k; \lambda)
   }{
     P(X = k) = \pi \cdot I_{0}(k) + (1 - \pi) \cdot f(k; \lambda)
   }
 
-where \eqn{I_{0}(k)} is the indicator function for zero and
-\eqn{f(k; \lambda)} is the p.m.f. of the \code{\link{Poisson}}
-distribution.
+  where \eqn{I_{0}(k)} is the indicator function for zero and
+  \eqn{f(k; \lambda)} is the p.m.f. of the \code{\link{Poisson}}
+  distribution.
 
-\strong{Cumulative distribution function (c.d.f.)}:
+  **Cumulative distribution function (c.d.f.)**:
 
-\deqn{
+  \deqn{
     P(X \le k) = \pi + (1 - \pi) \cdot F(k; \lambda)
   }{
     P(X \le k) = \pi + (1 - \pi) \cdot F(k; \lambda)
   }
 
-where \eqn{F(k; \lambda)} is the c.d.f. of the \code{\link{Poisson}} distribution.
+  where \eqn{F(k; \lambda)} is the c.d.f. of the \code{\link{Poisson}} distribution.
 
-\strong{Moment generating function (m.g.f.)}:
+  **Moment generating function (m.g.f.)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = \pi + (1 - \pi) \cdot e^{\lambda (e^t - 1)}
   }{
     E(e^(tX)) = \pi + (1 - \pi) \cdot e^(\lambda (e^t - 1))

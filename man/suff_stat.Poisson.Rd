@@ -7,7 +7,7 @@
 \method{suff_stat}{Poisson}(d, x, ...)
 }
 \arguments{
-\item{d}{An \code{Poisson} object created by a call to \code{\link[=Poisson]{Poisson()}}.}
+\item{d}{An `Poisson` object created by a call to [Poisson()].}
 
 \item{x}{A vector of data.}
 
@@ -15,11 +15,10 @@
 }
 \value{
 A named list of the sufficient statistics of the Poisson
-distribution:
-\itemize{
-\item \code{sum}: The sum of the data.
-\item \code{samples}: The number of samples in the data.
-}
+  distribution:
+
+  - `sum`: The sum of the data.
+  - `samples`: The number of samples in the data.
 }
 \description{
 Compute the sufficient statistics of an Poisson distribution from data

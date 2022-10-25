@@ -25,7 +25,7 @@ mass function (p.m.f.), for a discrete variable, is plotted.}
 
 \item{p}{A numeric vector.  If \code{xlim} is not passed in \code{...}
 then \code{p} is the fallback option for setting the range of values
-over which the p.m.f, p.d.f. or c.d.f is plotted.  See \strong{Details}.}
+over which the p.m.f, p.d.f. or c.d.f is plotted.  See **Details**.}
 
 \item{len}{An integer scalar.  If \code{x} is a continuous distribution
 object then \code{len} is the number of values at which the p.d.f or
@@ -53,8 +53,8 @@ such as \code{xlim, ylim, xlab, ylab, main, lwd, lty, col, pch}.}
 }
 \value{
 An object with the same class as \code{x}, in which the parameter
-vectors have been expanded to contain a parameter combination for each
-function plotted.
+  vectors have been expanded to contain a parameter combination for each
+  function plotted.
 }
 \description{
 Plot method for an object inheriting from class \code{"distribution"}.
@@ -67,27 +67,27 @@ than 1.  See the argument \code{all}.
 }
 \details{
 If \code{xlim} is passed in \code{...} then this determines the
-range of values of the variable to be plotted on the horizontal axis.
-If \code{x} is a discrete distribution object then the values for which
-the p.m.f. or c.d.f. is plotted is the smallest set of consecutive
-integers that contains both components of \code{xlim}.  Otherwise,
-\code{xlim} is used directly.
+  range of values of the variable to be plotted on the horizontal axis.
+  If \code{x} is a discrete distribution object then the values for which
+  the p.m.f. or c.d.f. is plotted is the smallest set of consecutive
+  integers that contains both components of \code{xlim}.  Otherwise,
+  \code{xlim} is used directly.
 
-If \code{xlim} is not passed in \code{...} then the range of values spans
-the support of the distribution, with the following proviso: if the
-lower (upper) endpoint of the distribution is \code{-Inf} (\code{Inf})
-then the lower (upper) limit of the plotting range is set to the
-\code{p[1]}\\% (\code{p[2]}\\%) quantile of the distribution.
+  If \code{xlim} is not passed in \code{...} then the range of values spans
+  the support of the distribution, with the following proviso: if the
+  lower (upper) endpoint of the distribution is \code{-Inf} (\code{Inf})
+  then the lower (upper) limit of the plotting range is set to the
+  \code{p[1]}\% (\code{p[2]}\%) quantile of the distribution.
 
-If the name of \code{x} is a single upper case letter then that name is
-used to labels the axes of the plot.  Otherwise, \code{x} and
-\code{P(X = x)} or \code{f(x)} are used.
+  If the name of \code{x} is a single upper case letter then that name is
+  used to labels the axes of the plot.  Otherwise, \code{x} and
+  \code{P(X = x)} or \code{f(x)} are used.
 
-A legend is included only if at least one of the parameter vectors in
-\code{x} has length greater than 1.
+  A legend is included only if at least one of the parameter vectors in
+  \code{x} has length greater than 1.
 
-Plots of c.d.f.s are produced using calls to
-\code{\link[stats]{approxfun}} and \code{\link[stats:ecdf]{plot.ecdf}}.
+  Plots of c.d.f.s are produced using calls to
+  \code{\link[stats]{approxfun}} and \code{\link[stats:ecdf]{plot.ecdf}}.
 }
 \examples{
 B <- Binomial(20, 0.7)

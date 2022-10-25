@@ -8,13 +8,13 @@ Cauchy(location = 0, scale = 1)
 }
 \arguments{
 \item{location}{The location parameter. Can be any real number. Defaults
-to \code{0}.}
+to `0`.}
 
 \item{scale}{The scale parameter. Must be greater than zero (?). Defaults
-to \code{1}.}
+to `1`.}
 }
 \value{
-A \code{Cauchy} object.
+A `Cauchy` object.
 }
 \description{
 Note that the Cauchy distribution is the student's t distribution
@@ -24,38 +24,38 @@ as priors in Bayesian contexts due to their heavy tails.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a Cauchy variable with mean
-\verb{location =} \eqn{x_0} and \code{scale} = \eqn{\gamma}.
+  In the following, let \eqn{X} be a Cauchy variable with mean
+  `location =` \eqn{x_0} and `scale` = \eqn{\gamma}.
 
-\strong{Support}: \eqn{R}, the set of all real numbers
+  **Support**: \eqn{R}, the set of all real numbers
 
-\strong{Mean}: Undefined.
+  **Mean**: Undefined.
 
-\strong{Variance}: Undefined.
+  **Variance**: Undefined.
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{1}{\pi \gamma \left[1 + \left(\frac{x - x_0}{\gamma} \right)^2 \right]}
   }{
     f(x) = 1 / (\pi \gamma (1 + ((x - x_0) / \gamma)^2)
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     F(t) = \frac{1}{\pi} \arctan \left( \frac{t - x_0}{\gamma} \right) +
       \frac{1}{2}
   }{
     F(t) = arctan((t - x_0) / \gamma) / \pi + 1/2
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-Does not exist.
+  Does not exist.
 }
 \examples{
 

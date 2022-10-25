@@ -12,20 +12,20 @@ FisherF(df1, df2, lambda = 0)
 \item{df2}{Denominator degrees of freedom. Can be any positive number.}
 
 \item{lambda}{Non-centrality parameter. Can be any positive number.
-Defaults to \code{0}.}
+Defaults to `0`.}
 }
 \value{
-A \code{FisherF} object.
+A `FisherF` object.
 }
 \description{
 Create an F distribution
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-TODO
+  TODO
 }
 \examples{
 

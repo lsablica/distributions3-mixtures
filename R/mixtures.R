@@ -34,8 +34,8 @@ format.Mixture <- function (x, digits = pmax(3L, getOption("digits") - 3L), ...)
     attr(x, "row.names") <- 1L:length(x)
   class(x) <- "data.frame"
   f <- sprintf("%s distribution (%s)", cl, apply(rbind(apply(matrix(sapply(x$distribution, format, digits, ...),d1,d2),1, function(y){paste(y, collapse = ", ")} ), 
-                                                       apply(matrix(sapply(x$weights, function(y) format(unlist(y), digits, ...)),d1,d2),1, function(z) paste(z, collapse = ", "))), 2L, function(p) paste(names(x), 
-                                                                                                                       "=", as.vector(p), collapse = ", ")))
+                                                       apply(matrix(sapply(x$weights, function(y) format(unlist(y), digits, ...)),d1,d2),1, function(z) paste(z, collapse = ", "))), 
+                                                 2L, function(p) paste(names(x), "=", as.vector(p), collapse = ", ")))
   setNames(f, n)
 }
 
@@ -72,56 +72,7 @@ distributions.Mixture <- function(X){
 }
 
 
-N1 <- Normal(mu = c(100))
-N2 <- Normal(mu = c(105))
-M0 <- Mixture(N1, N2, weights = c(0.7,0.3))
-pdf(M0, c(4,7,100))
-pdf(N1, c(4,7,100))*0.7 + pdf(N2, c(4,7,100))*0.3
 
-
-B3 <- Binomial(size = c(8,10))
-N3 <- Normal(mu = c(-100,100))
-K <- list(B3,N3)
-weights <- c(0.7,0.3)
-
-M <- Mixture(B3, N3, weights = weights)
-M <- Mixture(B3, N3, weights = matrix(c(0.7,0.3,0.7,0.3)))
-
-pdf(M, c(4,7,100))
-pdf(B3, c(4,7,100))*c(0.7,0.3)+pdf(N3, c(4,7,100))*c(0.7,0.3)
-
-pdf(M, c(4,7))
-pdf(B3, c(4,7))*c(0.7,0.3)+pdf(N3, c(4,7))*c(0.7,0.3)
-
-pdf(M, c(4,7), elementwise = FALSE)
-pdf(B3, c(4,7), elementwise = FALSE)*c(0.7,0.3)+pdf(N3, c(4,7), elementwise = FALSE)*c(0.7,0.3)
-
-
-M2 <- Mixture(Normal(mu=c(0,1),1), Normal(mu=c(1,2),1), Normal(mu=c(2,3),1), weights = c(0.5,0.3,0.2))
-M2
-pdf(M2, c(0,1,0))
-pdf(Normal(mu=c(0,1),1), c(0,1,0))*0.5 + pdf(Normal(mu=c(1,2),1), c(0,1,0))*0.3 + pdf(Normal(mu=c(2,3),1), c(0,1,0))*0.2
-
-cdf(M2, c(0,1,0))
-cdf(Normal(mu=c(0,1),1), c(0,1,0))*0.5 + cdf(Normal(mu=c(1,2),1), c(0,1,0))*0.3 + cdf(Normal(mu=c(2,3),1), c(0,1,0))*0.2
-
-log(pdf(M2, c(0,1,0)))
-pdf(M2, c(0,1,0), log=TRUE)
-log_pdf(M2, c(0,1,0))
-
-probs = c(NA, 1.5, 1, 0.5,0.7,0.35, -4)
-quantile(M2, probs)
-cdf(M2, c(0.6574192,1.6574192))
-quantile(M, probs)
-cdf(M, c(3,6)) ; cdf(M, c(2.99,5.99))
-quantile(M0, c(0.3,0.5))
-
-quantile(M2, c(0.3,0.5))
-cdf(M2,quantile(M2, c(0.3,0.5)))
-
-random(M2, 5)
-random(M, 5)
-random(M0, 5)
 
 #' @export
 mean.Mixture <- function(x, ...) {
@@ -215,7 +166,7 @@ quantile.Mixture <- function(x, probs, lower.tail = TRUE, log.p = FALSE, ...) {
   if(elementwise){ 
     Z[,,drop=TRUE]
   } else{
-    colnames(Z) <- paste("q", distributions3:::make_suffix(probs, digits = pmax(3L, getOption("digits") - 3L)), sep = "_")
+    colnames(Z) <- paste("q",make_suffix(probs, digits = pmax(3L, getOption("digits") - 3L)), sep = "_")
     Z
   } 
 }
@@ -240,7 +191,7 @@ random.Mixture <- function(x, n = 1L, drop = TRUE, ...) {
       Z[i,t == dist] <<- random(x[i]$distributions[[dist]], nn)
     })
   })
-  colnames(Z) <- paste("r", distributions3:::make_suffix(seq_len(n), digits = pmax(3L, getOption("digits") - 3L)), sep = "_")
+  colnames(Z) <- paste("r", make_suffix(seq_len(n), digits = pmax(3L, getOption("digits") - 3L)), sep = "_")
   Z
 }
 
@@ -255,12 +206,12 @@ support.Mixture <- function(d, drop = TRUE, ...) {
 #' @exportS3Method
 is_discrete.Mixture <- function(d, ...) {
   ellipsis::check_dots_used()
-  apply(Reduce(cbind, lapply(d$distributions, is_discrete)),2, all)
+  apply(Reduce(cbind, lapply(d$distributions, is_discrete)),1, all)
 }
 
 #' @exportS3Method
 is_continuous.Mixture <- function(d, ...) {
   ellipsis::check_dots_used()
-  apply(Reduce(cbind, lapply(d$distributions, is_continuous)),2, all)
+  apply(Reduce(cbind, lapply(d$distributions, is_continuous)),1, all)
 }
 

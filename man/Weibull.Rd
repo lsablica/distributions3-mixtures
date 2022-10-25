@@ -13,7 +13,7 @@ Weibull(shape, scale)
 number.}
 }
 \value{
-A \code{Weibull} object.
+A `Weibull` object.
 }
 \description{
 Generalization of the gamma distribution. Often used in survival and
@@ -21,32 +21,32 @@ time-to-event analyses.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a Weibull random variable with
-success probability \code{p} = \eqn{p}.
+  In the following, let \eqn{X} be a Weibull random variable with
+  success probability `p` = \eqn{p}.
 
-\strong{Support}: \eqn{R^+} and zero.
+  **Support**: \eqn{R^+} and zero.
 
-\strong{Mean}: \eqn{\lambda \Gamma(1+1/k)}, where \eqn{\Gamma} is
-the gamma function.
+  **Mean**: \eqn{\lambda \Gamma(1+1/k)}, where \eqn{\Gamma} is
+  the gamma function.
 
-\strong{Variance}: \eqn{\lambda [ \Gamma (1 + \frac{2}{k} ) - (\Gamma(1+ \frac{1}{k}))^2 ]}
+  **Variance**: \eqn{\lambda [ \Gamma (1 + \frac{2}{k} ) - (\Gamma(1+ \frac{1}{k}))^2 ]}
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{k}{\lambda}(\frac{x}{\lambda})^{k-1}e^{-(x/\lambda)^k}, x \ge 0
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{F(x) = 1 - e^{-(x/\lambda)^k}, x \ge 0}
+  \deqn{F(x) = 1 - e^{-(x/\lambda)^k}, x \ge 0}
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{\sum_{n=0}^\infty \frac{t^n\lambda^n}{n!} \Gamma(1+n/k), k \ge 1}
+  \deqn{\sum_{n=0}^\infty \frac{t^n\lambda^n}{n!} \Gamma(1+n/k), k \ge 1}
 }
 \examples{
 

@@ -8,7 +8,7 @@ suff_stat(d, x, ...)
 }
 \arguments{
 \item{d}{An object. The package provides methods for distribution
-objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binomial]{Binomial()}} etc.}
+objects such as those from [Normal()] or [Binomial()] etc.}
 
 \item{x}{A vector of data to compute the likelihood.}
 

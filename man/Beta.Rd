@@ -7,14 +7,14 @@
 Beta(alpha = 1, beta = 1)
 }
 \arguments{
-\item{alpha}{The alpha parameter. \code{alpha} can be any value strictly
-greater than zero. Defaults to \code{1}.}
+\item{alpha}{The alpha parameter. `alpha` can be any value strictly
+greater than zero. Defaults to `1`.}
 
-\item{beta}{The beta parameter. \code{beta} can be any value strictly
-greater than zero. Defaults to \code{1}.}
+\item{beta}{The beta parameter. `beta` can be any value strictly
+greater than zero. Defaults to `1`.}
 }
 \value{
-A \code{beta} object.
+A `beta` object.
 }
 \description{
 Create a Beta distribution

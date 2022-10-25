@@ -14,7 +14,7 @@ Tukey(nmeans, df, nranges)
 \item{nranges}{Number of groups being compared.}
 }
 \value{
-A \code{Tukey} object.
+A `Tukey` object.
 }
 \description{
 Tukey's studentized range distribution, used for Tukey's
@@ -22,14 +22,14 @@ honestly significant differences test in ANOVA.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-\strong{Support}: \eqn{R^+}, the set of positive real numbers.
+  **Support**: \eqn{R^+}, the set of positive real numbers.
 
-Other properties of Tukey's Studentized Range Distribution
-are omitted, largely because the distribution is not fun
-to work with.
+  Other properties of Tukey's Studentized Range Distribution
+  are omitted, largely because the distribution is not fun
+  to work with.
 }
 \examples{
 

@@ -7,7 +7,7 @@
 \method{support}{ZTPoisson}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{ZTPoisson} object created by a call to \code{\link[=ZTPoisson]{ZTPoisson()}}.}
+\item{d}{An `ZTPoisson` object created by a call to [ZTPoisson()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

@@ -10,19 +10,19 @@
 \method{log_pdf}{Multinomial}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Multinomial} object created by a call to \code{\link[=Multinomial]{Multinomial()}}.}
+\item{d}{A `Multinomial` object created by a call to [Multinomial()].}
 
 \item{x}{A vector of elements whose probabilities you would like to
-determine given the distribution \code{d}.}
+determine given the distribution `d`.}
 
 \item{...}{Unused. Unevaluated arguments will generate a warning to
 catch mispellings or other possible errors.}
 }
 \value{
-A vector of probabilities, one for each element of \code{x}.
+A vector of probabilities, one for each element of `x`.
 }
 \description{
-Please see the documentation of \code{\link[=Multinomial]{Multinomial()}} for some properties
+Please see the documentation of [Multinomial()] for some properties
 of the Multinomial distribution, as well as extensive examples
 showing to how calculate p-values and confidence intervals.
 }

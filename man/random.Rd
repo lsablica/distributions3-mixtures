@@ -11,10 +11,10 @@ random(x, n = 1L, drop = TRUE, ...)
 }
 \arguments{
 \item{x, object}{An object. The package provides methods for distribution
-objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binomial]{Binomial()}} etc.}
+objects such as those from [Normal()] or [Binomial()] etc.}
 
 \item{n, nsim}{The number of samples to draw. Should be a positive
-integer. Defaults to \code{1L}.}
+integer. Defaults to `1L`.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -26,7 +26,7 @@ prior to drawing the random sample. The previous random seed from the global
 environment (if any) is restored afterwards.}
 }
 \value{
-Random samples drawn from the distriubtion \code{x}.
+Random samples drawn from the distriubtion `x`.
 }
 \description{
 Generic function for drawing random samples from distribution objects.

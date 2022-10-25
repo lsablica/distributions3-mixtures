@@ -7,19 +7,17 @@
 \method{suff_stat}{Gamma}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Gamma} object created by a call to \code{\link[=Gamma]{Gamma()}}.}
+\item{d}{A `Gamma` object created by a call to [Gamma()].}
 
 \item{x}{A vector to fit the Gamma distribution to.}
 
 \item{...}{Unused.}
 }
 \value{
-a \code{Gamma} object
+a `Gamma` object
 }
 \description{
-\itemize{
-\item \code{sum}: The sum of the data.
-\item \code{log_sum}: The log of the sum of the data.
-\item \code{samples}: The number of samples in the data.
-}
+- `sum`: The sum of the data.
+  - `log_sum`: The log of the sum of the data.
+  - `samples`: The number of samples in the data.
 }

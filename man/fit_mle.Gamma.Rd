@@ -7,14 +7,14 @@
 \method{fit_mle}{Gamma}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Gamma} object created by a call to \code{\link[=Gamma]{Gamma()}}.}
+\item{d}{A `Gamma` object created by a call to [Gamma()].}
 
 \item{x}{A vector to fit the Gamma distribution to.}
 
 \item{...}{Unused.}
 }
 \value{
-a \code{Gamma} object
+a `Gamma` object
 }
 \description{
 Fit a Gamma distribution to data

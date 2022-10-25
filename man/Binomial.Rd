@@ -8,21 +8,21 @@ Binomial(size, p = 0.5)
 }
 \arguments{
 \item{size}{The number of trials. Must be an integer greater than or equal
-to one. When \code{size = 1L}, the Binomial distribution reduces to the
-bernoulli distribution. Often called \code{n} in textbooks.}
+to one. When `size = 1L`, the Binomial distribution reduces to the
+bernoulli distribution. Often called `n` in textbooks.}
 
-\item{p}{The success probability for a given trial. \code{p} can be any
-value in \verb{[0, 1]}, and defaults to \code{0.5}.}
+\item{p}{The success probability for a given trial. `p` can be any
+value in `[0, 1]`, and defaults to `0.5`.}
 }
 \value{
-A \code{Binomial} object.
+A `Binomial` object.
 }
 \description{
 Binomial distributions are used to represent situations can that can
 be thought as the result of \eqn{n} Bernoulli experiments (here the
-\eqn{n} is defined as the \code{size} of the experiment). The classical
+\eqn{n} is defined as the `size` of the experiment). The classical
 example is \eqn{n} independent coin flips, where each coin flip has
-probability \code{p} of success. In this case, the individual probability of
+probability `p` of success. In this case, the individual probability of
 flipping heads or tails is given by the  Bernoulli(p) distribution,
 and the probability of having \eqn{x} equal results (\eqn{x} heads,
 for example), in \eqn{n} trials is given by the Binomial(n, p) distribution.
@@ -31,44 +31,44 @@ the equation of the Bernoulli distribution.
 }
 \details{
 The Binomial distribution comes up when you are interested in the portion
-of people who do a thing. The Binomial distribution
-also comes up in the sign test, sometimes called the Binomial test
-(see \code{\link[stats:binom.test]{stats::binom.test()}}), where you may need the Binomial C.D.F. to
-compute p-values.
+  of people who do a thing. The Binomial distribution
+  also comes up in the sign test, sometimes called the Binomial test
+  (see [stats::binom.test()]), where you may need the Binomial C.D.F. to
+  compute p-values.
 
-We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  We recommend reading this documentation on
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a Binomial random variable with parameter
-\code{size} = \eqn{n} and \code{p} = \eqn{p}. Some textbooks define \eqn{q = 1 - p},
-or called \eqn{\pi} instead of \eqn{p}.
+  In the following, let \eqn{X} be a Binomial random variable with parameter
+  `size` = \eqn{n} and `p` = \eqn{p}. Some textbooks define \eqn{q = 1 - p},
+  or called \eqn{\pi} instead of \eqn{p}.
 
-\strong{Support}: \eqn{\{0, 1, 2, ..., n\}}{{0, 1, 2, ..., n}}
+  **Support**: \eqn{\{0, 1, 2, ..., n\}}{{0, 1, 2, ..., n}}
 
-\strong{Mean}: \eqn{np}
+  **Mean**: \eqn{np}
 
-\strong{Variance}: \eqn{np \cdot (1 - p) = np \cdot q}{np (1 - p)}
+  **Variance**: \eqn{np \cdot (1 - p) = np \cdot q}{np (1 - p)}
 
-\strong{Probability mass function (p.m.f)}:
+  **Probability mass function (p.m.f)**:
 
-\deqn{
+  \deqn{
     P(X = k) = {n \choose k} p^k (1 - p)^{n-k}
   }{
     P(X = k) = choose(n, k) p^k (1 - p)^(n - k)
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     P(X \le k) = \sum_{i=0}^{\lfloor k \rfloor} {n \choose i} p^i (1 - p)^{n-i}
   }{
     P(X \le k) = \sum_{i=0}^k choose(n, i) p^i (1 - p)^(n-i)
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = (1 - p + p e^t)^n
   }{
     E(e^(tX)) = (1 - p + p e^t)^n

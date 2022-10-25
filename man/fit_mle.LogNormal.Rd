@@ -7,14 +7,14 @@
 \method{fit_mle}{LogNormal}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{LogNormal} object created by a call to \code{\link[=LogNormal]{LogNormal()}}.}
+\item{d}{A `LogNormal` object created by a call to [LogNormal()].}
 
 \item{x}{A vector of data.}
 
 \item{...}{Unused.}
 }
 \value{
-A \code{LogNormal} object.
+A `LogNormal` object.
 }
 \description{
 Fit a Log Normal distribution to data

@@ -7,19 +7,19 @@
 Uniform(a = 0, b = 1)
 }
 \arguments{
-\item{a}{The a parameter. \code{a} can be any value in the set of real
-numbers. Defaults to \code{0}.}
+\item{a}{The a parameter. `a` can be any value in the set of real
+numbers. Defaults to `0`.}
 
-\item{b}{The a parameter. \code{b} can be any value in the set of real
-numbers. It should be strictly bigger than \code{a}, but if is not, the
-order of the parameters is inverted. Defaults to \code{1}.}
+\item{b}{The a parameter. `b` can be any value in the set of real
+numbers. It should be strictly bigger than `a`, but if is not, the
+order of the parameters is inverted. Defaults to `1`.}
 }
 \value{
-A \code{Uniform} object.
+A `Uniform` object.
 }
 \description{
 A distribution with constant density on an interval. The
-continuous analogue to the \code{\link[=Categorical]{Categorical()}} distribution.
+continuous analogue to the [Categorical()] distribution.
 }
 \examples{
 

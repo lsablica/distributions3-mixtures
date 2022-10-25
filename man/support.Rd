@@ -8,7 +8,7 @@ support(d, drop = TRUE, ...)
 }
 \arguments{
 \item{d}{An object. The package provides methods for distribution
-objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binomial]{Binomial()}} etc.}
+objects such as those from [Normal()] or [Binomial()] etc.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

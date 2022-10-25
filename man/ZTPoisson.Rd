@@ -11,7 +11,7 @@ ZTPoisson(lambda)
 Can be any positive number.}
 }
 \value{
-A \code{ZTPoisson} object.
+A `ZTPoisson` object.
 }
 \description{
 Zero-truncated Poisson distributions are frequently used to model counts
@@ -19,47 +19,47 @@ where zero observations cannot occur or have been excluded.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a zero-truncated Poisson random variable with parameter
-\code{lambda} = \eqn{\lambda}.
+  In the following, let \eqn{X} be a zero-truncated Poisson random variable with parameter
+  `lambda` = \eqn{\lambda}.
 
-\strong{Support}: \eqn{\{1, 2, 3, ...\}}{{1, 2, 3, ...}}
+  **Support**: \eqn{\{1, 2, 3, ...\}}{{1, 2, 3, ...}}
 
-\strong{Mean}:
-\deqn{
+  **Mean**: 
+  \deqn{
     \lambda \cdot \frac{1}{1 - e^{-\lambda}}
   }{
     \lambda \cdot 1/(1 - e^{-\lambda})
   }
 
-\strong{Variance}: \eqn{m \cdot (\lambda + 1 - m)}, where \eqn{m} is the mean above.
+  **Variance**: \eqn{m \cdot (\lambda + 1 - m)}, where \eqn{m} is the mean above.
 
-\strong{Probability mass function (p.m.f.)}:
+  **Probability mass function (p.m.f.)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \frac{f(k; \lambda)}{1 - f(0; \lambda)}
   }{
     P(X = k) = f(k; \lambda)/(1 - f(0; \lambda))
   }
 
-where \eqn{f(k; \lambda)} is the p.m.f. of the \code{\link{Poisson}}
-distribution.
+  where \eqn{f(k; \lambda)} is the p.m.f. of the \code{\link{Poisson}}
+  distribution.
 
-\strong{Cumulative distribution function (c.d.f.)}:
+  **Cumulative distribution function (c.d.f.)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \frac{F(k; \lambda)}{1 - F(0; \lambda)}
   }{
     P(X = k) = F(k; \lambda)/(1 - F(0; \lambda))
   }
 
-where \eqn{F(k; \lambda)} is the c.d.f. of the \code{\link{Poisson}} distribution.
+  where \eqn{F(k; \lambda)} is the c.d.f. of the \code{\link{Poisson}} distribution.
 
-\strong{Moment generating function (m.g.f.)}:
+  **Moment generating function (m.g.f.)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = \frac{1}{1 - e^{-\lambda}} \cdot e^{\lambda (e^t - 1)}
   }{
     E(e^(tX)) = 1/(1 - e^{-\lambda}) \cdot e^(\lambda (e^t - 1))

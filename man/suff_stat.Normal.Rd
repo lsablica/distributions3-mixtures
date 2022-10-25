@@ -7,7 +7,7 @@
 \method{suff_stat}{Normal}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Normal} object created by a call to \code{\link[=Normal]{Normal()}}.}
+\item{d}{A `Normal` object created by a call to [Normal()].}
 
 \item{x}{A vector of data.}
 
@@ -15,12 +15,11 @@
 }
 \value{
 A named list of the sufficient statistics of the normal
-distribution:
-\itemize{
-\item \code{mu}: The sample mean of the data.
-\item \code{sigma}: The sample standard deviation of the data.
-\item \code{samples}: The number of samples in the data.
-}
+  distribution:
+
+  - `mu`: The sample mean of the data.
+  - `sigma`: The sample standard deviation of the data.
+  - `samples`: The number of samples in the data.
 }
 \description{
 Compute the sufficient statistics for a Normal distribution from data

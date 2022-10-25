@@ -7,7 +7,7 @@
 \method{support}{Beta}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Beta} object created by a call to \code{\link[=Beta]{Beta()}}.}
+\item{d}{An `Beta` object created by a call to [Beta()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

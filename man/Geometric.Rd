@@ -7,49 +7,49 @@
 Geometric(p = 0.5)
 }
 \arguments{
-\item{p}{The success probability for the distribution. \code{p} can be
-any value in \verb{[0, 1]}, and defaults to \code{0.5}.}
+\item{p}{The success probability for the distribution. `p` can be
+any value in `[0, 1]`, and defaults to `0.5`.}
 }
 \value{
-A \code{Geometric} object.
+A `Geometric` object.
 }
 \description{
 The Geometric distribution can be thought of as a generalization
-of the \code{\link[=Bernoulli]{Bernoulli()}} distribution where we ask: "if I keep flipping a
-coin with probability \code{p} of heads, what is the probability I need
+of the [Bernoulli()] distribution where we ask: "if I keep flipping a
+coin with probability `p` of heads, what is the probability I need
 \eqn{k} flips before I get my first heads?" The Geometric
 distribution is a special case of Negative Binomial distribution.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a Geometric random variable with
-success probability \code{p} = \eqn{p}. Note that there are multiple
-parameterizations of the Geometric distribution.
+  In the following, let \eqn{X} be a Geometric random variable with
+  success probability `p` = \eqn{p}. Note that there are multiple
+  parameterizations of the Geometric distribution.
 
-\strong{Support}: 0 < p < 1, \eqn{x = 0, 1, \dots}
+  **Support**: 0 < p < 1, \eqn{x = 0, 1, \dots}
 
-\strong{Mean}: \eqn{\frac{1-p}{p}}
+  **Mean**: \eqn{\frac{1-p}{p}}
 
-\strong{Variance}: \eqn{\frac{1-p}{p^2}}
+  **Variance**: \eqn{\frac{1-p}{p^2}}
 
-\strong{Probability mass function (p.m.f)}:
+  **Probability mass function (p.m.f)**:
 
-\deqn{
+  \deqn{
     P(X = x) = p(1-p)^x,
    }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     P(X \le x) = 1 - (1-p)^{x+1}
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = \frac{pe^t}{1 - (1-p)e^t}
   }{
     E(e^{tX}) = \frac{pe^t}{1 - (1-p)e^t}

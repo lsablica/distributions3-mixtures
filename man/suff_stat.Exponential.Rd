@@ -7,7 +7,7 @@
 \method{suff_stat}{Exponential}(d, x, ...)
 }
 \arguments{
-\item{d}{An \code{Exponential} object created by a call to \code{\link[=Exponential]{Exponential()}}.}
+\item{d}{An `Exponential` object created by a call to [Exponential()].}
 
 \item{x}{A vector of data.}
 
@@ -15,11 +15,10 @@
 }
 \value{
 A named list of the sufficient statistics of the exponential
-distribution:
-\itemize{
-\item \code{sum}: The sum of the observations.
-\item \code{samples}: The number of observations.
-}
+  distribution:
+
+  - `sum`: The sum of the observations.
+  - `samples`: The number of observations.
 }
 \description{
 Compute the sufficient statistics of an Exponential distribution from data

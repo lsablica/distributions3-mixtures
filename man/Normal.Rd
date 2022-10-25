@@ -9,16 +9,16 @@ Normal(mu = 0, sigma = 1)
 \arguments{
 \item{mu}{The location parameter, written \eqn{\mu} in textbooks,
 which is also the mean of the distribution. Can be any real number.
-Defaults to \code{0}.}
+Defaults to `0`.}
 
 \item{sigma}{The scale parameter, written \eqn{\sigma} in textbooks,
-which is also the \strong{standard deviation} of the distribution. Can be any
-positive number. Defaults to \code{1}. If you would like a Normal
-distribution with \strong{variance} \eqn{\sigma^2}, be sure to take the
+which is also the **standard deviation** of the distribution. Can be any
+positive number. Defaults to `1`. If you would like a Normal
+distribution with **variance** \eqn{\sigma^2}, be sure to take the
 square root, as this is a common source of errors.}
 }
 \value{
-A \code{Normal} object.
+A `Normal` object.
 }
 \description{
 The Normal distribution is ubiquitous in statistics, partially because
@@ -33,45 +33,45 @@ gaussian distribution.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a Normal random variable with mean
-\code{mu} = \eqn{\mu} and standard deviation \code{sigma} = \eqn{\sigma}.
+  In the following, let \eqn{X} be a Normal random variable with mean
+  `mu` = \eqn{\mu} and standard deviation `sigma` = \eqn{\sigma}.
 
-\strong{Support}: \eqn{R}, the set of all real numbers
+  **Support**: \eqn{R}, the set of all real numbers
 
-\strong{Mean}: \eqn{\mu}
+  **Mean**: \eqn{\mu}
 
-\strong{Variance}: \eqn{\sigma^2}
+  **Variance**: \eqn{\sigma^2}
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x - \mu)^2 / 2 \sigma^2}
   }{
     f(x) = 1 / (2 \pi \sigma^2) exp(-(x - \mu)^2 / (2 \sigma^2))
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-The cumulative distribution function has the form
+  The cumulative distribution function has the form
 
-\deqn{
+  \deqn{
     F(t) = \int_{-\infty}^t \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x - \mu)^2 / 2 \sigma^2} dx
   }{
     F(t) = integral_{-\infty}^t 1 / (2 \pi \sigma^2) exp(-(x - \mu)^2 / (2 \sigma^2)) dx
   }
 
-but this integral does not have a closed form solution and must be
-approximated numerically. The c.d.f. of a standard Normal is sometimes
-called the "error function". The notation \eqn{\Phi(t)} also stands
-for the c.d.f. of a standard Normal evaluated at \eqn{t}. Z-tables
-list the value of \eqn{\Phi(t)} for various \eqn{t}.
+  but this integral does not have a closed form solution and must be
+  approximated numerically. The c.d.f. of a standard Normal is sometimes
+  called the "error function". The notation \eqn{\Phi(t)} also stands
+  for the c.d.f. of a standard Normal evaluated at \eqn{t}. Z-tables
+  list the value of \eqn{\Phi(t)} for various \eqn{t}.
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = e^{\mu t + \sigma^2 t^2 / 2}
   }{
     E(e^(tX)) = e^(\mu t + \sigma^2 t^2 / 2)

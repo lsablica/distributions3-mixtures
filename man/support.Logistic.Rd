@@ -7,7 +7,7 @@
 \method{support}{Logistic}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Logistic} object created by a call to \code{\link[=Logistic]{Logistic()}}.}
+\item{d}{An `Logistic` object created by a call to [Logistic()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

@@ -7,7 +7,7 @@
 \method{support}{Poisson}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Poisson} object created by a call to \code{\link[=Poisson]{Poisson()}}.}
+\item{d}{An `Poisson` object created by a call to [Poisson()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

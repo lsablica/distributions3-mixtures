@@ -10,14 +10,14 @@ Gamma(shape, rate = 1)
 \item{shape}{The shape parameter. Can be any positive number.}
 
 \item{rate}{The rate parameter. Can be any positive number. Defaults
-to \code{1}.}
+to `1`.}
 }
 \value{
-A \code{Gamma} object.
+A `Gamma` object.
 }
 \description{
 Several important distributions are special cases of the Gamma
-distribution. When the shape parameter is \code{1}, the Gamma is an
+distribution. When the shape parameter is `1`, the Gamma is an
 exponential distribution with parameter \eqn{1/\beta}. When the
 \eqn{shape = n/2} and \eqn{rate = 1/2}, the Gamma is a equivalent to
 a chi squared distribution with n degrees of freedom. Moreover, if
@@ -30,39 +30,39 @@ distribution will be added soon.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a Gamma random variable
-with parameters
-\code{shape} = \eqn{\alpha} and
-\code{rate} = \eqn{\beta}.
+  In the following, let \eqn{X} be a Gamma random variable
+  with parameters
+  `shape` = \eqn{\alpha} and
+  `rate` = \eqn{\beta}.
 
-\strong{Support}: \eqn{x \in (0, \infty)}
+  **Support**: \eqn{x \in (0, \infty)}
 
-\strong{Mean}: \eqn{\frac{\alpha}{\beta}}
+  **Mean**: \eqn{\frac{\alpha}{\beta}}
 
-\strong{Variance}: \eqn{\frac{\alpha}{\beta^2}}
+  **Variance**: \eqn{\frac{\alpha}{\beta^2}}
 
-\strong{Probability density function (p.m.f)}:
+  **Probability density function (p.m.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}
   }{
     f(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{\Gamma(\alpha, \beta x)}{\Gamma{\alpha}}
   }{
     f(x) = \frac{\Gamma(\alpha, \beta x)}{\Gamma{\alpha}}
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = \Big(\frac{\beta}{ \beta - t}\Big)^{\alpha}, \thinspace t < \beta
   }{
     E(e^(tX)) = \Big(\frac{\beta}{ \beta - t}\Big)^{\alpha}, \thinspace t < \beta

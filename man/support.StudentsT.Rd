@@ -7,7 +7,7 @@
 \method{support}{StudentsT}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{StudentsT} object created by a call to \code{\link[=StudentsT]{StudentsT()}}.}
+\item{d}{An `StudentsT` object created by a call to [StudentsT()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

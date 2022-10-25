@@ -7,7 +7,7 @@
 \method{support}{LogNormal}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{LogNormal} object created by a call to \code{\link[=LogNormal]{LogNormal()}}.}
+\item{d}{An `LogNormal` object created by a call to [LogNormal()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

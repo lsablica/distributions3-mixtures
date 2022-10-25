@@ -7,7 +7,7 @@
 \method{support}{Exponential}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Exponential} object created by a call to \code{\link[=Exponential]{Exponential()}}.}
+\item{d}{An `Exponential` object created by a call to [Exponential()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

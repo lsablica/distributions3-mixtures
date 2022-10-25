@@ -7,50 +7,50 @@
 Bernoulli(p = 0.5)
 }
 \arguments{
-\item{p}{The success probability for the distribution. \code{p} can be any
-value in \verb{[0, 1]}, and defaults to \code{0.5}.}
+\item{p}{The success probability for the distribution. `p` can be any
+value in `[0, 1]`, and defaults to `0.5`.}
 }
 \value{
-A \code{Bernoulli} object.
+A `Bernoulli` object.
 }
 \description{
 Bernoulli distributions are used to represent events like coin flips
 when there is single trial that is either successful or unsuccessful.
-The Bernoulli distribution is a special case of the \code{\link[=Binomial]{Binomial()}}
-distribution with \code{n = 1}.
+The Bernoulli distribution is a special case of the [Binomial()]
+distribution with `n = 1`.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a Bernoulli random variable with parameter
-\code{p} = \eqn{p}. Some textbooks also define \eqn{q = 1 - p}, or use
-\eqn{\pi} instead of \eqn{p}.
+  In the following, let \eqn{X} be a Bernoulli random variable with parameter
+  `p` = \eqn{p}. Some textbooks also define \eqn{q = 1 - p}, or use
+  \eqn{\pi} instead of \eqn{p}.
 
-The Bernoulli probability  distribution is widely used to model
-binary variables, such as 'failure' and 'success'. The most
-typical example is the flip of a coin, when  \eqn{p} is thought as the
-probability of flipping a head, and \eqn{q = 1 - p} is the
-probability of flipping a tail.
+  The Bernoulli probability  distribution is widely used to model
+  binary variables, such as 'failure' and 'success'. The most
+  typical example is the flip of a coin, when  \eqn{p} is thought as the
+  probability of flipping a head, and \eqn{q = 1 - p} is the
+  probability of flipping a tail.
 
-\strong{Support}: \eqn{\{0, 1\}}{{0, 1}}
+  **Support**: \eqn{\{0, 1\}}{{0, 1}}
 
-\strong{Mean}: \eqn{p}
+  **Mean**: \eqn{p}
 
-\strong{Variance}: \eqn{p \cdot (1 - p) = p \cdot q}{p (1 - p)}
+  **Variance**: \eqn{p \cdot (1 - p) = p \cdot q}{p (1 - p)}
 
-\strong{Probability mass function (p.m.f)}:
+  **Probability mass function (p.m.f)**:
 
-\deqn{
+  \deqn{
     P(X = x) = p^x (1 - p)^{1-x} = p^x q^{1-x}
   }{
     P(X = x) = p^x (1 - p)^(1-x)
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     P(X \le x) =
     \left \{
       \begin{array}{ll}
@@ -63,9 +63,9 @@ probability of flipping a tail.
     P(X \le x) = (1 - p) 1_{[0, 1)}(x) + 1_{1}(x)
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = (1 - p) + p e^t
   }{
     E(e^(tX)) = (1 - p) + p e^t

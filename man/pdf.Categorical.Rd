@@ -10,16 +10,16 @@
 \method{log_pdf}{Categorical}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Categorical} object created by a call to \code{\link[=Categorical]{Categorical()}}.}
+\item{d}{A `Categorical` object created by a call to [Categorical()].}
 
 \item{x}{A vector of elements whose probabilities you would like to
-determine given the distribution \code{d}.}
+determine given the distribution `d`.}
 
 \item{...}{Unused. Unevaluated arguments will generate a warning to
 catch mispellings or other possible errors.}
 }
 \value{
-A vector of probabilities, one for each element of \code{x}.
+A vector of probabilities, one for each element of `x`.
 }
 \description{
 Evaluate the probability mass function of a Categorical discrete distribution

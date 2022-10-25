@@ -7,7 +7,7 @@
 \method{support}{Erlang}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Erlang} object created by a call to \code{\link[=Erlang]{Erlang()}}.}
+\item{d}{An `Erlang` object created by a call to [Erlang()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

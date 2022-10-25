@@ -7,7 +7,7 @@
 \method{support}{ZINegativeBinomial}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{ZINegativeBinomial} object created by a call to \code{\link[=ZINegativeBinomial]{ZINegativeBinomial()}}.}
+\item{d}{An `ZINegativeBinomial` object created by a call to [ZINegativeBinomial()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

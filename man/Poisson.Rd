@@ -11,36 +11,36 @@ Poisson(lambda)
 variance of the distribution. Can be any positive number.}
 }
 \value{
-A \code{Poisson} object.
+A `Poisson` object.
 }
 \description{
 Poisson distributions are frequently used to model counts.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a Poisson random variable with parameter
-\code{lambda} = \eqn{\lambda}.
+  In the following, let \eqn{X} be a Poisson random variable with parameter
+  `lambda` = \eqn{\lambda}.
 
-\strong{Support}: \eqn{\{0, 1, 2, 3, ...\}}{{0, 1, 2, 3, ...}}
+  **Support**: \eqn{\{0, 1, 2, 3, ...\}}{{0, 1, 2, 3, ...}}
 
-\strong{Mean}: \eqn{\lambda}
+  **Mean**: \eqn{\lambda}
 
-\strong{Variance}: \eqn{\lambda}
+  **Variance**: \eqn{\lambda}
 
-\strong{Probability mass function (p.m.f)}:
+  **Probability mass function (p.m.f)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
   }{
     P(X = k) = \lambda^k e^(-\lambda) / k!
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     P(X \le k) = e^{-\lambda}
     \sum_{i = 0}^{\lfloor k \rfloor} \frac{\lambda^i}{i!}
   }{
@@ -48,9 +48,9 @@ In the following, let \eqn{X} be a Poisson random variable with parameter
     \sum_{i = 0}^k \lambda^i / i!
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = e^{\lambda (e^t - 1)}
   }{
     E(e^(tX)) = e^(\lambda (e^t - 1))

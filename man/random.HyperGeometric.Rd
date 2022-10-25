@@ -7,9 +7,9 @@
 \method{random}{HyperGeometric}(x, n = 1L, drop = TRUE, ...)
 }
 \arguments{
-\item{x}{A \code{HyperGeometric} object created by a call to \code{\link[=HyperGeometric]{HyperGeometric()}}.}
+\item{x}{A `HyperGeometric` object created by a call to [HyperGeometric()].}
 
-\item{n}{The number of samples to draw. Defaults to \code{1L}.}
+\item{n}{The number of samples to draw. Defaults to `1L`.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -17,12 +17,12 @@
 catch mispellings or other possible errors.}
 }
 \value{
-In case of a single distribution object or \code{n = 1}, either a numeric
-vector of length \code{n} (if \code{drop = TRUE}, default) or a \code{matrix} with \code{n} columns
-(if \code{drop = FALSE}).
+In case of a single distribution object or `n = 1`, either a numeric
+  vector of length `n` (if `drop = TRUE`, default) or a `matrix` with `n` columns
+  (if `drop = FALSE`).
 }
 \description{
-Please see the documentation of \code{\link[=HyperGeometric]{HyperGeometric()}} for some properties
+Please see the documentation of [HyperGeometric()] for some properties
 of the HyperGeometric distribution, as well as extensive examples
 showing to how calculate p-values and confidence intervals.
 }

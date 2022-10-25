@@ -7,7 +7,7 @@
 \method{support}{NegativeBinomial}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{NegativeBinomial} object created by a call to \code{\link[=NegativeBinomial]{NegativeBinomial()}}.}
+\item{d}{An `NegativeBinomial` object created by a call to [NegativeBinomial()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

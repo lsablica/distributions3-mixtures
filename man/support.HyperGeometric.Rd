@@ -7,7 +7,7 @@
 \method{support}{HyperGeometric}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{HyperGeometric} object created by a call to \code{\link[=HyperGeometric]{HyperGeometric()}}.}
+\item{d}{An `HyperGeometric` object created by a call to [HyperGeometric()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

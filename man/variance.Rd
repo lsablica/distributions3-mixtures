@@ -14,7 +14,7 @@ kurtosis(x, ...)
 }
 \arguments{
 \item{x}{An object. The package provides methods for distribution
-objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binomial]{Binomial()}} etc.}
+objects such as those from [Normal()] or [Binomial()] etc.}
 
 \item{...}{Arguments passed to methods. Unevaluated arguments will generate a warning to
 catch mispellings or other possible errors.}

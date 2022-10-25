@@ -7,14 +7,14 @@
 \method{fit_mle}{Poisson}(d, x, ...)
 }
 \arguments{
-\item{d}{An \code{Poisson} object created by a call to \code{\link[=Poisson]{Poisson()}}.}
+\item{d}{An `Poisson` object created by a call to [Poisson()].}
 
 \item{x}{A vector of data.}
 
 \item{...}{Unused.}
 }
 \value{
-An \code{Poisson} object.
+An `Poisson` object.
 }
 \description{
 Fit an Poisson distribution to data

@@ -7,7 +7,7 @@
 \method{suff_stat}{Bernoulli}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Bernoulli} object.}
+\item{d}{A `Bernoulli` object.}
 
 \item{x}{A vector of zeroes and ones.}
 
@@ -15,11 +15,10 @@
 }
 \value{
 A named list of the sufficient statistics of the Bernoulli
-distribution:
-\itemize{
-\item \code{successes}: The number of successful trials (\code{sum(x == 1)})
-\item \code{failures}: The number of failed trials (\code{sum(x == 0)}).
-}
+  distribution:
+
+  - `successes`: The number of successful trials (`sum(x == 1)`)
+  - `failures`: The number of failed trials (`sum(x == 0)`).
 }
 \description{
 Compute the sufficient statistics for a Bernoulli distribution from data

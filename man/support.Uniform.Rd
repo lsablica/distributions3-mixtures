@@ -7,7 +7,7 @@
 \method{support}{Uniform}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Uniform} object created by a call to \code{\link[=Uniform]{Uniform()}}.}
+\item{d}{An `Uniform` object created by a call to [Uniform()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

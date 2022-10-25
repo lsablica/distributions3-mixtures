@@ -11,12 +11,12 @@ Categorical(outcomes, p = NULL)
 space. Can be numeric, factor, character, or logical.}
 
 \item{p}{A vector of success probabilities for each outcome.
-Each element of \code{p} can be any positive value -- the vector gets
-normalized internally. Defaults to \code{NULL}, in which case the
+Each element of `p` can be any positive value -- the vector gets
+normalized internally. Defaults to `NULL`, in which case the
 distribution is assumed to be uniform.}
 }
 \value{
-A \code{Categorical} object.
+A `Categorical` object.
 }
 \description{
 Create a Categorical distribution

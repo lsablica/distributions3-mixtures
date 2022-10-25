@@ -14,52 +14,52 @@ Defaults to zero.}
 \item{scale}{The scale parameter for the distribution. Defaults to one.}
 }
 \value{
-A \code{Logistic} object.
+A `Logistic` object.
 }
 \description{
 A continuous distribution on the real line. For binary outcomes
 the model given by \eqn{P(Y = 1 | X) = F(X \beta)} where
-\eqn{F} is the Logistic \code{\link[=cdf]{cdf()}} is called \emph{logistic regression}.
+\eqn{F} is the Logistic [cdf()] is called *logistic regression*.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a Logistic random variable with
-\code{location} = \eqn{\mu} and \code{scale} = \eqn{s}.
+  In the following, let \eqn{X} be a Logistic random variable with
+  `location` = \eqn{\mu} and `scale` = \eqn{s}.
 
-\strong{Support}: \eqn{R}, the set of all real numbers
+  **Support**: \eqn{R}, the set of all real numbers
 
-\strong{Mean}: \eqn{\mu}
+  **Mean**: \eqn{\mu}
 
-\strong{Variance}: \eqn{s^2 \pi^2 / 3}
+  **Variance**: \eqn{s^2 \pi^2 / 3}
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{e^{-(\frac{x - \mu}{s})}}{s [1 + \exp(-(\frac{x - \mu}{s})) ]^2}
   }{
     f(x) = e^(-(t - \mu) / s) / (s (1 + e^(-(t - \mu) / s))^2)
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     F(t) = \frac{1}{1 + e^{-(\frac{t - \mu}{s})}}
   }{
     F(t) = 1 / (1 +  e^(-(t - \mu) / s))
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = e^{\mu t} \beta(1 - st, 1 + st)
   }{
     E(e^(tX)) = = e^(\mu t) \beta(1 - st, 1 + st)
   }
 
-where \eqn{\beta(x, y)} is the Beta function.
+  where \eqn{\beta(x, y)} is the Beta function.
 }
 \examples{
 

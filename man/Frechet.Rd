@@ -8,57 +8,57 @@ Frechet(location = 0, scale = 1, shape = 1)
 }
 \arguments{
 \item{location}{The location (minimum) parameter \eqn{m}.
-\code{location} can be any real number.  Defaults to \code{0}.}
+`location` can be any real number.  Defaults to `0`.}
 
 \item{scale}{The scale parameter \eqn{s}.
-\code{scale} can be any positive number.  Defaults to \code{1}.}
+`scale` can be any positive number.  Defaults to `1`.}
 
 \item{shape}{The shape parameter \eqn{\alpha}.
-\code{shape} can be any positive number.  Defaults to \code{1}.}
+`shape` can be any positive number.  Defaults to `1`.}
 }
 \value{
-A \code{Frechet} object.
+A `Frechet` object.
 }
 \description{
-The Frechet distribution is a special case of the \verb{\link{GEV}} distribution,
+The Frechet distribution is a special case of the `\link{GEV}` distribution,
 obtained when the GEV shape parameter \eqn{\xi} is positive.
 It may be referred to as a type II extreme value distribution.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a Frechet random variable with location
-parameter  \code{location} = \eqn{m}, scale parameter \code{scale} =
-\eqn{s}, and shape parameter \code{shape} = \eqn{\alpha}.
-A Frechet(\eqn{m, s, \alpha}) distribution is equivalent to a
-\verb{\link{GEV}}(\eqn{m + s, s / \alpha, 1 / \alpha}) distribution.
+  In the following, let \eqn{X} be a Frechet random variable with location
+  parameter  `location` = \eqn{m}, scale parameter `scale` =
+  \eqn{s}, and shape parameter `shape` = \eqn{\alpha}.
+  A Frechet(\eqn{m, s, \alpha}) distribution is equivalent to a
+  `\link{GEV}`(\eqn{m + s, s / \alpha, 1 / \alpha}) distribution.
 
-\strong{Support}: \eqn{(m, \infty)}.
+  **Support**: \eqn{(m, \infty)}.
 
-\strong{Mean}: \eqn{m + s\Gamma(1 - 1/\alpha)}, for \eqn{\alpha > 1}; undefined
-otherwise.
+  **Mean**: \eqn{m + s\Gamma(1 - 1/\alpha)}, for \eqn{\alpha > 1}; undefined
+  otherwise.
 
-\strong{Median}: \eqn{m + s(\ln 2)^{-1/\alpha}}{m + s(\ln 2)^(-1/\alpha)}.
+  **Median**: \eqn{m + s(\ln 2)^{-1/\alpha}}{m + s(\ln 2)^(-1/\alpha)}.
 
-\strong{Variance}:
-\eqn{s^2 [\Gamma(1 - 2 / \alpha) - \Gamma(1 - 1 / \alpha)^2]}
-for \eqn{\alpha > 2}; undefined otherwise.
+  **Variance**:
+  \eqn{s^2 [\Gamma(1 - 2 / \alpha) - \Gamma(1 - 1 / \alpha)^2]}
+  for \eqn{\alpha > 2}; undefined otherwise.
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{f(x) = \alpha s ^ {-1} [(x - m) / s] ^ {-(1 + \alpha)}%
+  \deqn{f(x) = \alpha s ^ {-1} [(x - m) / s] ^ {-(1 + \alpha)}%
         \exp\{-[(x - m) / s] ^ {-\alpha} \}}{%
        f(x) = (\alpha / s) [(x - m) / s] ^ [-(1 + \alpha)]%
         exp{-[(x - m) / s] ^ (-\alpha)}}
-for \eqn{x > m}.  The p.d.f. is 0 for \eqn{x \leq m}{x <= m}.
+  for \eqn{x > m}.  The p.d.f. is 0 for \eqn{x \leq m}{x <= m}.
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{F(x) = \exp\{-[(x - m) / s] ^ {-\alpha} \}}{%
+  \deqn{F(x) = \exp\{-[(x - m) / s] ^ {-\alpha} \}}{%
        F(x) = exp{-[(x - m) / s] ^ (-\alpha)}}
-for \eqn{x > m}.  The c.d.f. is 0 for \eqn{x \leq m}{x <= m}.
+  for \eqn{x > m}.  The c.d.f. is 0 for \eqn{x \leq m}{x <= m}.
 }
 \examples{
 

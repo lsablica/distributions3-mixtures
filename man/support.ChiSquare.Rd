@@ -7,7 +7,7 @@
 \method{support}{ChiSquare}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{ChiSquare} object created by a call to \code{\link[=ChiSquare]{ChiSquare()}}.}
+\item{d}{An `ChiSquare` object created by a call to [ChiSquare()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

@@ -8,10 +8,10 @@ cdf(d, x, drop = TRUE, ...)
 }
 \arguments{
 \item{d}{An object. The package provides methods for distribution
-objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binomial]{Binomial()}} etc.}
+objects such as those from [Normal()] or [Binomial()] etc.}
 
 \item{x}{A vector of elements whose cumulative probabilities you would
-like to determine given the distribution \code{d}.}
+like to determine given the distribution `d`.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -19,7 +19,7 @@ like to determine given the distribution \code{d}.}
 catch mispellings or other possible errors.}
 }
 \value{
-Probabilities corresponding to the vector \code{x}.
+Probabilities corresponding to the vector `x`.
 }
 \description{
 Generic function for computing probabilities from distribution objects based

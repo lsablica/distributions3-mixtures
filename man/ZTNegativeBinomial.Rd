@@ -14,7 +14,7 @@ Can be any positive number.}
 Can be any positive number.}
 }
 \value{
-A \code{ZTNegativeBinomial} object.
+A `ZTNegativeBinomial` object.
 }
 \description{
 Zero-truncated negative binomial distributions are frequently used to model counts
@@ -22,47 +22,47 @@ where zero observations cannot occur or have been excluded.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a zero-truncated negative binomial random variable with parameter
-\code{mu} = \eqn{\mu}.
+  In the following, let \eqn{X} be a zero-truncated negative binomial random variable with parameter
+  `mu` = \eqn{\mu}.
 
-\strong{Support}: \eqn{\{1, 2, 3, ...\}}{{1, 2, 3, ...}}
+  **Support**: \eqn{\{1, 2, 3, ...\}}{{1, 2, 3, ...}}
 
-\strong{Mean}:
-\deqn{
+  **Mean**: 
+  \deqn{
     \mu \cdot \frac{1}{1 - F(0; \mu, \theta)}
   }{
     \mu \cdot 1/(1 - F(0; \mu, \theta))
   }
 
-where \eqn{F(k; \mu, \theta)} is the c.d.f. of the \code{\link{NegativeBinomial}} distribution.
+  where \eqn{F(k; \mu, \theta)} is the c.d.f. of the \code{\link{NegativeBinomial}} distribution.
 
-\strong{Variance}: \eqn{m \cdot (\mu + 1 - m)}, where \eqn{m} is the mean above.
+  **Variance**: \eqn{m \cdot (\mu + 1 - m)}, where \eqn{m} is the mean above.
 
-\strong{Probability mass function (p.m.f.)}:
+  **Probability mass function (p.m.f.)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \frac{f(k; \mu, \theta)}{1 - F(0; \mu, \theta)}
   }{
     P(X = k) = f(k; \mu, \theta)/(1 - F(0; \mu, \theta))
   }
 
-where \eqn{f(k; \mu, \theta)} is the p.m.f. of the \code{\link{NegativeBinomial}}
-distribution.
+  where \eqn{f(k; \mu, \theta)} is the p.m.f. of the \code{\link{NegativeBinomial}}
+  distribution.
 
-\strong{Cumulative distribution function (c.d.f.)}:
+  **Cumulative distribution function (c.d.f.)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \frac{F(k; \mu, \theta)}{1 - F(0; \mu, \theta)}
   }{
     P(X = k) = F(k; \mu, \theta)/(1 - F(0; \mu, \theta))
   }
 
-\strong{Moment generating function (m.g.f.)}:
+  **Moment generating function (m.g.f.)**:
 
-Omitted for now.
+  Omitted for now.
 }
 \examples{
 ## set up a zero-truncated negative binomial distribution

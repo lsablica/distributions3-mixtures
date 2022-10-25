@@ -7,15 +7,15 @@
 \method{random}{Multinomial}(x, n = 1L, ...)
 }
 \arguments{
-\item{x}{A \code{Multinomial} object created by a call to \code{\link[=Multinomial]{Multinomial()}}.}
+\item{x}{A `Multinomial` object created by a call to [Multinomial()].}
 
-\item{n}{The number of samples to draw. Defaults to \code{1L}.}
+\item{n}{The number of samples to draw. Defaults to `1L`.}
 
 \item{...}{Unused. Unevaluated arguments will generate a warning to
 catch mispellings or other possible errors.}
 }
 \value{
-An integer vector of length \code{n}.
+An integer vector of length `n`.
 }
 \description{
 Draw a random sample from a Multinomial distribution

@@ -7,14 +7,14 @@
 \method{fit_mle}{Bernoulli}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Bernoulli} object.}
+\item{d}{A `Bernoulli` object.}
 
 \item{x}{A vector of zeroes and ones.}
 
 \item{...}{Unused.}
 }
 \value{
-a \code{Bernoulli} object
+a `Bernoulli` object
 }
 \description{
 Fit a Bernoulli distribution to data

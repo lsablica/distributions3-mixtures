@@ -44,7 +44,7 @@ hurdle Poisson distribution call the corresponding \code{pois}
 functions for the Poisson distribution from base R internally.
 
 Note, however, that the precision of \code{qhpois} for very large
-probabilities (close to 1) is limited because the probabilities
+probabilities (close to 1) is limited because the probabilities 
 are internally handled in levels and not in logs (even if \code{log.p = TRUE}).
 }
 \examples{

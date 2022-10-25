@@ -10,11 +10,11 @@
 \method{log_pdf}{NegativeBinomial}(d, x, drop = TRUE, elementwise = NULL, ...)
 }
 \arguments{
-\item{d}{A \code{NegativeBinomial} object created by a call to
-\code{\link[=NegativeBinomial]{NegativeBinomial()}}.}
+\item{d}{A `NegativeBinomial` object created by a call to
+[NegativeBinomial()].}
 
 \item{x}{A vector of elements whose probabilities you would like to
-determine given the distribution \code{d}.}
+determine given the distribution `d`.}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -31,9 +31,9 @@ possible errors.}
 }
 \value{
 In case of a single distribution object, either a numeric
-vector of length \code{probs} (if \code{drop = TRUE}, default) or a \code{matrix} with
-\code{length(x)} columns (if \code{drop = FALSE}). In case of a vectorized distribution
-object, a matrix with \code{length(x)} columns containing all possible combinations.
+  vector of length `probs` (if `drop = TRUE`, default) or a `matrix` with
+  `length(x)` columns (if `drop = FALSE`). In case of a vectorized distribution
+  object, a matrix with `length(x)` columns containing all possible combinations.
 }
 \description{
 Evaluate the probability mass function of a NegativeBinomial distribution

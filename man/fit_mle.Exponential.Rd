@@ -7,14 +7,14 @@
 \method{fit_mle}{Exponential}(d, x, ...)
 }
 \arguments{
-\item{d}{An \code{Exponential} object created by a call to \code{\link[=Exponential]{Exponential()}}.}
+\item{d}{An `Exponential` object created by a call to [Exponential()].}
 
 \item{x}{A vector of data.}
 
 \item{...}{Unused.}
 }
 \value{
-An \code{Exponential} object.
+An `Exponential` object.
 }
 \description{
 Fit an Exponential distribution to data

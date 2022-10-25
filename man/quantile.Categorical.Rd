@@ -7,7 +7,7 @@
 \method{quantile}{Categorical}(x, probs, ...)
 }
 \arguments{
-\item{x}{A \code{Categorical} object created by a call to \code{\link[=Categorical]{Categorical()}}.}
+\item{x}{A `Categorical` object created by a call to [Categorical()].}
 
 \item{probs}{A vector of probabilities.}
 
@@ -15,10 +15,10 @@
 catch mispellings or other possible errors.}
 }
 \value{
-A vector of quantiles, one for each element of \code{probs}.
+A vector of quantiles, one for each element of `probs`.
 }
 \description{
-\code{quantile()} is the inverse of \code{cdf()}.
+`quantile()` is the inverse of `cdf()`.
 }
 \examples{
 

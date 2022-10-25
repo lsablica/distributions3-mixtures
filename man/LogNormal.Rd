@@ -8,47 +8,47 @@ LogNormal(log_mu = 0, log_sigma = 1)
 }
 \arguments{
 \item{log_mu}{The location parameter, written \eqn{\mu} in textbooks.
-Can be any real number. Defaults to \code{0}.}
+Can be any real number. Defaults to `0`.}
 
 \item{log_sigma}{The scale parameter, written \eqn{\sigma} in textbooks.
-Can be any positive real number. Defaults to \code{1}.}
+Can be any positive real number. Defaults to `1`.}
 }
 \value{
-A \code{LogNormal} object.
+A `LogNormal` object.
 }
 \description{
-A random variable created by exponentiating a \code{\link[=Normal]{Normal()}}
+A random variable created by exponentiating a [Normal()]
 distribution. Taking the log of LogNormal data returns in
-\code{\link[=Normal]{Normal()}} data.
+[Normal()] data.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a LogNormal random variable with
-success probability \code{p} = \eqn{p}.
+  In the following, let \eqn{X} be a LogNormal random variable with
+  success probability `p` = \eqn{p}.
 
-\strong{Support}: \eqn{R^+}
+  **Support**: \eqn{R^+}
 
-\strong{Mean}: \eqn{\exp(\mu + \sigma^2/2)}
+  **Mean**: \eqn{\exp(\mu + \sigma^2/2)}
 
-\strong{Variance}: \eqn{[\exp(\sigma^2)-1]\exp(2\mu+\sigma^2)}
+  **Variance**: \eqn{[\exp(\sigma^2)-1]\exp(2\mu+\sigma^2)}
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{1}{x \sigma \sqrt{2 \pi}} \exp \left(-\frac{(\log x - \mu)^2}{2 \sigma^2} \right)
   }{
     f(x) = \frac{1}{x \sigma \sqrt{2 \pi}} \exp (-\frac{(\log x - \mu)^2}{2 \sigma^2})
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{F(x) = \frac{1}{2} + \frac{1}{2\sqrt{pi}}\int_{-x}^x e^{-t^2} dt}
+  \deqn{F(x) = \frac{1}{2} + \frac{1}{2\sqrt{pi}}\int_{-x}^x e^{-t^2} dt}
 
-\strong{Moment generating function (m.g.f)}:
-Undefined.
+  **Moment generating function (m.g.f)**:
+  Undefined.
 }
 \examples{
 

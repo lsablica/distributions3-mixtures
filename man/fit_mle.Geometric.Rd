@@ -7,14 +7,14 @@
 \method{fit_mle}{Geometric}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Geometric} object.}
+\item{d}{A `Geometric` object.}
 
 \item{x}{A vector of zeroes and ones.}
 
 \item{...}{Unused.}
 }
 \value{
-a \code{Geometric} object
+a `Geometric` object
 }
 \description{
 Fit a Geometric distribution to data

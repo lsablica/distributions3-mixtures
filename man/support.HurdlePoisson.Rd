@@ -7,7 +7,7 @@
 \method{support}{HurdlePoisson}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{HurdlePoisson} object created by a call to \code{\link[=HurdlePoisson]{HurdlePoisson()}}.}
+\item{d}{An `HurdlePoisson` object created by a call to [HurdlePoisson()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

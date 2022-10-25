@@ -7,15 +7,15 @@
 \method{random}{Categorical}(x, n = 1L, ...)
 }
 \arguments{
-\item{x}{A \code{Categorical} object created by a call to \code{\link[=Categorical]{Categorical()}}.}
+\item{x}{A `Categorical` object created by a call to [Categorical()].}
 
-\item{n}{The number of samples to draw. Defaults to \code{1L}.}
+\item{n}{The number of samples to draw. Defaults to `1L`.}
 
 \item{...}{Unused. Unevaluated arguments will generate a warning to
 catch mispellings or other possible errors.}
 }
 \value{
-A vector containing values from \code{outcomes} of length \code{n}.
+A vector containing values from `outcomes` of length `n`.
 }
 \description{
 Draw a random sample from a Categorical distribution

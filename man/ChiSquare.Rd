@@ -10,7 +10,7 @@ ChiSquare(df)
 \item{df}{Degrees of freedom. Must be positive.}
 }
 \value{
-A \code{ChiSquare} object.
+A `ChiSquare` object.
 }
 \description{
 Chi-square distributions show up often in frequentist settings
@@ -19,45 +19,45 @@ in maximum likelihood estimation settings.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a \eqn{\chi^2} random variable with
-\code{df} = \eqn{k}.
+  In the following, let \eqn{X} be a \eqn{\chi^2} random variable with
+  `df` = \eqn{k}.
 
-\strong{Support}: \eqn{R^+}, the set of positive real numbers
+  **Support**: \eqn{R^+}, the set of positive real numbers
 
-\strong{Mean}: \eqn{k}
+  **Mean**: \eqn{k}
 
-\strong{Variance}: \eqn{2k}
+  **Variance**: \eqn{2k}
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x - \mu)^2 / 2 \sigma^2}
   }{
     f(x) = 1 / (2 \pi \sigma^2) exp(-(x - \mu)^2 / (2 \sigma^2))
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-The cumulative distribution function has the form
+  The cumulative distribution function has the form
 
-\deqn{
+  \deqn{
     F(t) = \int_{-\infty}^t \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-(x - \mu)^2 / 2 \sigma^2} dx
   }{
     F(t) = integral_{-\infty}^t 1 / (2 \pi \sigma^2) exp(-(x - \mu)^2 / (2 \sigma^2)) dx
   }
 
-but this integral does not have a closed form solution and must be
-approximated numerically. The c.d.f. of a standard normal is sometimes
-called the "error function". The notation \eqn{\Phi(t)} also stands
-for the c.d.f. of a standard normal evaluated at \eqn{t}. Z-tables
-list the value of \eqn{\Phi(t)} for various \eqn{t}.
+  but this integral does not have a closed form solution and must be
+  approximated numerically. The c.d.f. of a standard normal is sometimes
+  called the "error function". The notation \eqn{\Phi(t)} also stands
+  for the c.d.f. of a standard normal evaluated at \eqn{t}. Z-tables
+  list the value of \eqn{\Phi(t)} for various \eqn{t}.
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = e^{\mu t + \sigma^2 t^2 / 2}
   }{
     E(e^(tX)) = e^(\mu t + \sigma^2 t^2 / 2)
@@ -66,16 +66,16 @@ list the value of \eqn{\Phi(t)} for various \eqn{t}.
 \section{Transformations}{
 
 
-A squared standard \code{\link[=Normal]{Normal()}} distribution is equivalent to a
+A squared standard [Normal()] distribution is equivalent to a
 \eqn{\chi^2_1} distribution with one degree of freedom. The
-\eqn{\chi^2} distribution is a special case of the \code{\link[=Gamma]{Gamma()}}
+\eqn{\chi^2} distribution is a special case of the [Gamma()]
 distribution with shape (TODO: check this) parameter equal
 to a half. Sums of \eqn{\chi^2} distributions
 are also distributed as \eqn{\chi^2} distributions, where the
 degrees of freedom of the contributing distributions get summed.
-The ratio of two \eqn{\chi^2} distributions is a \code{\link[=FisherF]{FisherF()}}
-distribution. The ratio of a \code{\link[=Normal]{Normal()}} and the square root
-of a scaled \code{\link[=ChiSquare]{ChiSquare()}} is a \code{\link[=StudentsT]{StudentsT()}} distribution.
+The ratio of two \eqn{\chi^2} distributions is a [FisherF()]
+distribution. The ratio of a [Normal()] and the square root
+of a scaled [ChiSquare()] is a [StudentsT()] distribution.
 }
 
 \examples{

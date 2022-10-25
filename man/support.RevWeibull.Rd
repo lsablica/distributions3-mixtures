@@ -7,7 +7,7 @@
 \method{support}{RevWeibull}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{RevWeibull} object created by a call to \code{\link[=RevWeibull]{RevWeibull()}}.}
+\item{d}{An `RevWeibull` object created by a call to [RevWeibull()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

@@ -7,7 +7,7 @@
 \method{support}{Cauchy}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Cauchy} object created by a call to \code{\link[=Cauchy]{Cauchy()}}.}
+\item{d}{An `Cauchy` object created by a call to [Cauchy()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

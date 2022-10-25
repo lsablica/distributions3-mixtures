@@ -13,10 +13,10 @@ Can be any positive number.}
 \item{theta}{Overdispersion parameter of the negative binomial component of the distribution.
 Can be any positive number.}
 
-\item{pi}{Zero-inflation probability, can be any value in \verb{[0, 1]}.}
+\item{pi}{Zero-inflation probability, can be any value in `[0, 1]`.}
 }
 \value{
-A \code{ZINegativeBinomial} object.
+A `ZINegativeBinomial` object.
 }
 \description{
 Zero-inflated negative binomial distributions are frequently used to model counts
@@ -24,43 +24,43 @@ with overdispersion and many zero observations.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail.
 
-In the following, let \eqn{X} be a zero-inflated negative binomial random variable with parameters
-\code{mu} = \eqn{\mu} and \code{theta} = \eqn{\theta}.
+  In the following, let \eqn{X} be a zero-inflated negative binomial random variable with parameters
+  `mu` = \eqn{\mu} and `theta` = \eqn{\theta}.
 
-\strong{Support}: \eqn{\{0, 1, 2, 3, ...\}}{{0, 1, 2, 3, ...}}
+  **Support**: \eqn{\{0, 1, 2, 3, ...\}}{{0, 1, 2, 3, ...}}
 
-\strong{Mean}: \eqn{(1 - \pi) \cdot \mu}
+  **Mean**: \eqn{(1 - \pi) \cdot \mu}
 
-\strong{Variance}: \eqn{(1 - \pi) \cdot \mu \cdot (1 + (\pi + 1/\theta) \cdot \mu)}
+  **Variance**: \eqn{(1 - \pi) \cdot \mu \cdot (1 + (\pi + 1/\theta) \cdot \mu)}
 
-\strong{Probability mass function (p.m.f.)}:
+  **Probability mass function (p.m.f.)**:
 
-\deqn{
+  \deqn{
     P(X = k) = \pi \cdot I_{0}(k) + (1 - \pi) \cdot f(k; \mu, \theta)
   }{
     P(X = k) = \pi \cdot I_{0}(k) + (1 - \pi) \cdot f(k; \mu, \theta)
   }
 
-where \eqn{I_{0}(k)} is the indicator function for zero and
-\eqn{f(k; \mu, \theta)} is the p.m.f. of the \code{\link{NegativeBinomial}}
-distribution.
+  where \eqn{I_{0}(k)} is the indicator function for zero and
+  \eqn{f(k; \mu, \theta)} is the p.m.f. of the \code{\link{NegativeBinomial}}
+  distribution.
 
-\strong{Cumulative distribution function (c.d.f.)}:
+  **Cumulative distribution function (c.d.f.)**:
 
-\deqn{
+  \deqn{
     P(X \le k) = \pi + (1 - \pi) \cdot F(k; \mu, \theta)
   }{
     P(X \le k) = \pi + (1 - \pi) \cdot F(k; \mu, \theta)
   }
 
-where \eqn{F(k; \mu, \theta)} is the c.d.f. of the \code{\link{NegativeBinomial}} distribution.
+  where \eqn{F(k; \mu, \theta)} is the c.d.f. of the \code{\link{NegativeBinomial}} distribution.
 
-\strong{Moment generating function (m.g.f.)}:
+  **Moment generating function (m.g.f.)**:
 
-Omitted for now.
+  Omitted for now.
 }
 \examples{
 ## set up a zero-inflated negative binomial distribution

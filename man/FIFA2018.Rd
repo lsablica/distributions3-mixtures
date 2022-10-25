@@ -7,23 +7,23 @@
 \format{
 A data frame with 128 rows and 7 columns.
 \describe{
-\item{goals}{integer. Number of goals scored in normal time (90 minutes), \
-i.e., excluding potential extra time or penalties in knockout matches.}
-\item{team}{character. 3-letter FIFA code for the team.}
-\item{match}{integer. Match ID ranging from 1 (opening match) to 64 (final).}
-\item{type}{factor. Type of match for groups A to H, round of 16 (R16), quarter final,
-semi-final, match for 3rd place, and final.}
-\item{stage}{factor. Group vs. knockout tournament stage.}
-\item{logability}{numeric. Estimated log-ability for each team based on
-bookmaker consensus model.}
-\item{difference}{numeric. Difference in estimated log-abilities between
-a team and its opponent in each match.}
-}
+  \item{goals}{integer. Number of goals scored in normal time (90 minutes), \
+    i.e., excluding potential extra time or penalties in knockout matches.}
+  \item{team}{character. 3-letter FIFA code for the team.}
+  \item{match}{integer. Match ID ranging from 1 (opening match) to 64 (final).}
+  \item{type}{factor. Type of match for groups A to H, round of 16 (R16), quarter final,
+    semi-final, match for 3rd place, and final.}
+  \item{stage}{factor. Group vs. knockout tournament stage.}
+  \item{logability}{numeric. Estimated log-ability for each team based on
+    bookmaker consensus model.}
+  \item{difference}{numeric. Difference in estimated log-abilities between
+    a team and its opponent in each match.}
+  }
 }
 \source{
 The goals for each match have been obtained from Wikipedia
-(\url{https://en.wikipedia.org/wiki/2018_FIFA_World_Cup}) and the log-abilities
-from Zeileis et al. (2018) based on quoted odds from Oddschecker.com and Bwin.com.
+  (\url{https://en.wikipedia.org/wiki/2018_FIFA_World_Cup}) and the log-abilities
+  from Zeileis et al. (2018) based on quoted odds from Oddschecker.com and Bwin.com.
 }
 \usage{
 data("FIFA2018", package = "distributions3")
@@ -103,14 +103,14 @@ cbind("observed" = obsrvd, "expected" = expctd)
 }
 \references{
 Leitner C, Zeileis A, Hornik K (2010).
-Forecasting Sports Tournaments by Ratings of (Prob)abilities: A Comparison for the EURO 2008.
-\emph{International Journal of Forecasting}, \bold{26}(3), 471-481.
-\doi{10.1016/j.ijforecast.2009.10.001}
+  Forecasting Sports Tournaments by Ratings of (Prob)abilities: A Comparison for the EURO 2008.
+  \emph{International Journal of Forecasting}, \bold{26}(3), 471-481.
+  \doi{10.1016/j.ijforecast.2009.10.001}
 
 Zeileis A, Leitner C, Hornik K (2018).
-Probabilistic Forecasts for the 2018 FIFA World Cup Based on the Bookmaker Consensus Model.
-Working Paper 2018-09, Working Papers in Economics and Statistics,
-Research Platform Empirical and Experimental Economics, University of Innsbruck.
-\url{https://EconPapers.RePEc.org/RePEc:inn:wpaper:2018-09}
+  Probabilistic Forecasts for the 2018 FIFA World Cup Based on the Bookmaker Consensus Model.
+  Working Paper 2018-09, Working Papers in Economics and Statistics,
+  Research Platform Empirical and Experimental Economics, University of Innsbruck. 
+  \url{https://EconPapers.RePEc.org/RePEc:inn:wpaper:2018-09}
 }
 \keyword{datasets}

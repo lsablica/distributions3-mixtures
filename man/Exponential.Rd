@@ -8,10 +8,10 @@ Exponential(rate = 1)
 }
 \arguments{
 \item{rate}{The rate parameter, written \eqn{\lambda} in textbooks.
-Can be any positive number. Defaults to \code{1}.}
+Can be any positive number. Defaults to `1`.}
 }
 \value{
-An \code{Exponential} object.
+An `Exponential` object.
 }
 \description{
 Exponential distributions are frequently used for modeling the amount
@@ -22,33 +22,33 @@ of machinery can run before needing repair.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be an Exponential random variable with
-rate parameter \code{rate} = \eqn{\lambda}.
+  In the following, let \eqn{X} be an Exponential random variable with
+  rate parameter `rate` = \eqn{\lambda}.
 
-\strong{Support}: {x in [0, \eqn{\infty})}
+  **Support**: {x in [0, \eqn{\infty})}
 
-\strong{Mean}: 1 / \eqn{\lambda}
+  **Mean**: 1 / \eqn{\lambda}
 
-\strong{Variance}: 1 / \eqn{\lambda^2}
+  **Variance**: 1 / \eqn{\lambda^2}
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-\deqn{
+  \deqn{
     f(x) = \lambda e^{-\lambda x}
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-\deqn{
+  \deqn{
     F(x) = 1 - e^{-\lambda x}
   }
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     \frac{\lambda}{\lambda - t}, for t < \lambda
   }
 }

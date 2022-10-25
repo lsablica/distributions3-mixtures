@@ -4,7 +4,7 @@
 \alias{apply_dpqr}
 \alias{make_support}
 \alias{make_positive_integer}
-\title{Utilities for \code{distributions3} objects}
+\title{Utilities for `distributions3` objects}
 \usage{
 apply_dpqr(d, FUN, at, elementwise = NULL, drop = TRUE, type = NULL, ...)
 
@@ -13,13 +13,13 @@ make_support(min, max, d, drop = TRUE)
 make_positive_integer(n)
 }
 \arguments{
-\item{d}{A \code{distributions3} object.}
+\item{d}{A `distributions3` object.}
 
 \item{FUN}{Function to be computed. Function should be of type \code{FUN(at, d)}, where
 \code{at} is the argument at which the function should be evaluated (e.g., a quantile,
 probability, or sample size) and \code{d} is a \code{distributions3} object.}
 
-\item{at}{Specification of values at which \code{FUN} should be evaluated, typically a
+\item{at}{Specification of values at which `FUN` should be evaluated, typically a
 numeric vector (e.g., of quantiles, probabilities, etc.) but possibly also a matrix or data
 frame.}
 
@@ -40,15 +40,15 @@ generation more efficiently.}
 
 \item{...}{Arguments to be passed to  \code{FUN}.}
 
-\item{min, max}{Numeric vectors. Minima and maxima of the supports of a \code{distributions3} object.}
+\item{min, max}{Numeric vectors. Minima and maxima of the supports of a `distributions3` object.}
 
-\item{n}{numeric. Number of observations for computing random draws. If \code{length(n) > 1},
-the length is taken to be the number required (consistent with base R as, e.g., for \code{rnorm()}).}
+\item{n}{numeric. Number of observations for computing random draws. If `length(n) > 1`,
+the length is taken to be the number required (consistent with base R as, e.g., for `rnorm()`).}
 }
 \description{
 Various utility functions to implement methods for distributions with a
 unified workflow, in particular to facilitate working with vectorized
-\code{distributions3} objects.
+`distributions3` objects.
 These are particularly useful in the computation of densities, probabilities, quantiles,
 and random samples when classical d/p/q/r functions are readily available for
 the distribution of interest.

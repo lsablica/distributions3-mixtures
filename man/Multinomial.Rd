@@ -8,57 +8,57 @@ Multinomial(size, p)
 }
 \arguments{
 \item{size}{The number of trials. Must be an integer greater than or equal
-to one. When \code{size = 1L}, the Multinomial distribution reduces to the
+to one. When `size = 1L`, the Multinomial distribution reduces to the
 categorical distribution (also called the discrete uniform).
-Often called \code{n} in textbooks.}
+Often called `n` in textbooks.}
 
-\item{p}{A vector of success probabilities for each trial. \code{p} can
+\item{p}{A vector of success probabilities for each trial. `p` can
 take on any positive value, and the vector is normalized internally.}
 }
 \value{
-A \code{Multinomial} object.
+A `Multinomial` object.
 }
 \description{
 The multinomial distribution is a generalization of the binomial
 distribution to multiple categories. It is perhaps easiest to think
-that we first extend a \code{\link[=Bernoulli]{Bernoulli()}} distribution to include more
-than two categories, resulting in a \code{\link[=Categorical]{Categorical()}} distribution.
+that we first extend a [Bernoulli()] distribution to include more
+than two categories, resulting in a [Categorical()] distribution.
 We then extend repeat the Categorical experiment several (\eqn{n})
 times.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X = (X_1, ..., X_k)} be a Multinomial
-random variable with success probability \code{p} = \eqn{p}. Note that
-\eqn{p} is vector with \eqn{k} elements that sum to one. Assume
-that we repeat the Categorical experiment \code{size} = \eqn{n} times.
+  In the following, let \eqn{X = (X_1, ..., X_k)} be a Multinomial
+  random variable with success probability `p` = \eqn{p}. Note that
+  \eqn{p} is vector with \eqn{k} elements that sum to one. Assume
+  that we repeat the Categorical experiment `size` = \eqn{n} times.
 
-\strong{Support}: Each \eqn{X_i} is in \eqn{{0, 1, 2, ..., n}}.
+  **Support**: Each \eqn{X_i} is in \eqn{{0, 1, 2, ..., n}}.
 
-\strong{Mean}: The mean of \eqn{X_i} is \eqn{n p_i}.
+  **Mean**: The mean of \eqn{X_i} is \eqn{n p_i}.
 
-\strong{Variance}: The variance of \eqn{X_i} is \eqn{n p_i (1 - p_i)}.
-For \eqn{i \neq j}, the covariance of \eqn{X_i} and \eqn{X_j}
-is \eqn{-n p_i p_j}.
+  **Variance**: The variance of \eqn{X_i} is \eqn{n p_i (1 - p_i)}.
+    For \eqn{i \neq j}, the covariance of \eqn{X_i} and \eqn{X_j}
+    is \eqn{-n p_i p_j}.
 
-\strong{Probability mass function (p.m.f)}:
+  **Probability mass function (p.m.f)**:
 
-\deqn{
+  \deqn{
     P(X_1 = x_1, ..., X_k = x_k) = \frac{n!}{x_1! x_2! ... x_k!} p_1^{x_1} \cdot p_2^{x_2} \cdot ... \cdot p_k^{x_k}
   }{
     P(X_1 = x_1, ..., X_k = x_k) = n! / (x_1! x_2! ... x_k!) p_1^x_1 p_2^x_2 ... p_k^x_k
   }
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-Omitted for multivariate random variables for the time being.
+  Omitted for multivariate random variables for the time being.
 
-\strong{Moment generating function (m.g.f)}:
+  **Moment generating function (m.g.f)**:
 
-\deqn{
+  \deqn{
     E(e^{tX}) = \left(\sum_{i=1}^k p_i e^{t_i}\right)^n
   }{
     E(e^(tX)) = (p_1 e^t_1 + p_2 e^t_2 + ... + p_k e^t_k)^n

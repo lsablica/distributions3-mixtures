@@ -7,7 +7,7 @@
 \method{suff_stat}{Binomial}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Binomial} object.}
+\item{d}{A `Binomial` object.}
 
 \item{x}{A vector of zeroes and ones.}
 
@@ -15,12 +15,11 @@
 }
 \value{
 A named list of the sufficient statistics of the Binomial
-distribution:
-\itemize{
-\item \code{successes}: The total number of successful trials.
-\item \code{experiments}: The number of experiments run.
-\item \code{trials}: The number of trials run per experiment.
-}
+  distribution:
+
+  - `successes`: The total number of successful trials.
+  - `experiments`: The number of experiments run.
+  - `trials`: The number of trials run per experiment.
 }
 \description{
 Compute the sufficient statistics for the Binomial distribution from data

@@ -7,7 +7,7 @@
 \method{support}{Geometric}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Geometric} object created by a call to \code{\link[=Geometric]{Geometric()}}.}
+\item{d}{An `Geometric` object created by a call to [Geometric()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

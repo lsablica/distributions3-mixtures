@@ -7,16 +7,16 @@
 \method{fit_mle}{Binomial}(d, x, ...)
 }
 \arguments{
-\item{d}{A \code{Binomial} object.}
+\item{d}{A `Binomial` object.}
 
 \item{x}{A vector of zeroes and ones.}
 
 \item{...}{Unused.}
 }
 \value{
-a \code{Binomial} object
+a `Binomial` object
 }
 \description{
-The fit distribution will inherit the same \code{size} parameter as
-the \code{Binomial} object passed.
+The fit distribution will inherit the same `size` parameter as
+the `Binomial` object passed.
 }

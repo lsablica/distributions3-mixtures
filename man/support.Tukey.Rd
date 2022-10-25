@@ -7,7 +7,7 @@
 \method{support}{Tukey}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Tukey} object created by a call to \code{\link[=Tukey]{Tukey()}}.}
+\item{d}{An `Tukey` object created by a call to [Tukey()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

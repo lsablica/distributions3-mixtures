@@ -7,7 +7,7 @@
 \method{support}{Gamma}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{Gamma} object created by a call to \code{\link[=Gamma]{Gamma()}}.}
+\item{d}{An `Gamma` object created by a call to [Gamma()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

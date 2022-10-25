@@ -7,7 +7,7 @@
 \method{support}{ZIPoisson}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{ZIPoisson} object created by a call to \code{\link[=ZIPoisson]{ZIPoisson()}}.}
+\item{d}{An `ZIPoisson` object created by a call to [ZIPoisson()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 

@@ -10,7 +10,7 @@ is_distribution(x)
 \item{x}{An object to test.}
 }
 \description{
-\code{is_distribution} tests if \code{x} inherits from \code{"distribution"}.
+`is_distribution` tests if `x` inherits from `"distribution"`.
 }
 \examples{
 

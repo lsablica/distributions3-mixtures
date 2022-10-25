@@ -47,7 +47,7 @@ hurdle negative binomial distribution call the corresponding \code{nbinom}
 functions for the negative binomial distribution from base R internally.
 
 Note, however, that the precision of \code{qhnbinom} for very large
-probabilities (close to 1) is limited because the probabilities
+probabilities (close to 1) is limited because the probabilities 
 are internally handled in levels and not in logs (even if \code{log.p = TRUE}).
 }
 \examples{

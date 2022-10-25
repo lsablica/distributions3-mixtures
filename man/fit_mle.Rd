@@ -8,7 +8,7 @@ fit_mle(d, x, ...)
 }
 \arguments{
 \item{d}{An object. The package provides methods for distribution
-objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binomial]{Binomial()}} etc.}
+objects such as those from [Normal()] or [Binomial()] etc.}
 
 \item{x}{A vector of data to compute the likelihood.}
 
@@ -16,8 +16,8 @@ objects such as those from \code{\link[=Normal]{Normal()}} or \code{\link[=Binom
 catch mispellings or other possible errors.}
 }
 \value{
-A distribution (the same kind as \code{d}) where the parameters
-are the MLE estimates based on \code{x}.
+A distribution (the same kind as `d`) where the parameters
+  are the MLE estimates based on `x`.
 }
 \description{
 Generic function for fitting maximum-likelihood estimates (MLEs) of

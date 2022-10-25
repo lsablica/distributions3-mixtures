@@ -7,7 +7,7 @@
 \method{support}{GP}(d, drop = TRUE, ...)
 }
 \arguments{
-\item{d}{An \code{GP} object created by a call to \code{\link[=GP]{GP()}}.}
+\item{d}{An `GP` object created by a call to [GP()].}
 
 \item{drop}{logical. Should the result be simplified to a vector if possible?}
 
@@ -15,8 +15,8 @@
 }
 \value{
 In case of a single distribution object, a numeric vector of length 2
-with the minimum and maximum value of the support (if \code{drop = TRUE}, default)
-or a \code{matrix} with 2 columns. In case of a vectorized distribution object, a
+with the minimum and maximum value of the support (if `drop = TRUE`, default)
+or a `matrix` with 2 columns. In case of a vectorized distribution object, a
 matrix with 2 columns containing all minima and maxima.
 }
 \description{

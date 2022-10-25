@@ -8,20 +8,20 @@ GP(mu = 0, sigma = 1, xi = 0)
 }
 \arguments{
 \item{mu}{The location parameter, written \eqn{\mu} in textbooks.
-\code{mu} can be any real number.  Defaults to \code{0}.}
+`mu` can be any real number.  Defaults to `0`.}
 
 \item{sigma}{The scale parameter, written \eqn{\sigma} in textbooks.
-\code{sigma} can be any positive number.  Defaults to \code{1}.}
+`sigma` can be any positive number.  Defaults to `1`.}
 
 \item{xi}{The shape parameter, written \eqn{\xi} in textbooks.
-\code{xi} can be any real number.  Defaults to \code{0}, which corresponds to a
+`xi` can be any real number.  Defaults to `0`, which corresponds to a
 Gumbel distribution.}
 }
 \value{
-A \code{GP} object.
+A `GP` object.
 }
 \description{
-The GP distribution has a link to the \verb{\link{GEV}} distribution.
+The GP distribution has a link to the `\link{GEV}` distribution.
 Suppose that the maximum of \eqn{n} i.i.d. random variables has
 approximately a GEV distribution. For a sufficiently large threshold
 \eqn{u}, the conditional distribution of the amount (the threshold
@@ -33,53 +33,53 @@ substantially, but then exceedances of \eqn{u} may cluster.
 }
 \details{
 We recommend reading this documentation on
-\url{https://alexpghayes.github.io/distributions3/}, where the math
-will render with additional detail and much greater clarity.
+  <https://alexpghayes.github.io/distributions3/>, where the math
+  will render with additional detail and much greater clarity.
 
-In the following, let \eqn{X} be a GP random variable with location
-parameter  \code{mu} = \eqn{\mu}, scale parameter \code{sigma} = \eqn{\sigma} and
-shape parameter \code{xi} = \eqn{\xi}.
+  In the following, let \eqn{X} be a GP random variable with location
+  parameter  `mu` = \eqn{\mu}, scale parameter `sigma` = \eqn{\sigma} and
+  shape parameter `xi` = \eqn{\xi}.
 
-\strong{Support}:
-\eqn{[\mu, \mu - \sigma / \xi]} for \eqn{\xi < 0};
-\eqn{[\mu, \infty)} for \eqn{\xi \geq 0}{\xi >= 0}.
+  **Support**:
+  \eqn{[\mu, \mu - \sigma / \xi]} for \eqn{\xi < 0};
+  \eqn{[\mu, \infty)} for \eqn{\xi \geq 0}{\xi >= 0}.
 
-\strong{Mean}: \eqn{\mu + \sigma/(1 - \xi)} for
-\eqn{\xi < 1}; undefined otherwise.
+  **Mean**: \eqn{\mu + \sigma/(1 - \xi)} for
+  \eqn{\xi < 1}; undefined otherwise.
 
-\strong{Median}: \eqn{\mu + \sigma[2 ^ \xi - 1]/\xi}{%
+  **Median**: \eqn{\mu + \sigma[2 ^ \xi - 1]/\xi}{%
   \mu + \sigma[2^\xi - 1] / \xi} for \eqn{\xi \neq 0}{\xi != 0};
-\eqn{\mu + \sigma\ln 2}{\mu + \sigma ln2} for \eqn{\xi = 0}.
+  \eqn{\mu + \sigma\ln 2}{\mu + \sigma ln2} for \eqn{\xi = 0}.
 
-\strong{Variance}:
-\eqn{\sigma^2 / (1 - \xi)^2 (1 - 2\xi)}
-for \eqn{\xi < 1 / 2}; undefined otherwise.
+  **Variance**:
+  \eqn{\sigma^2 / (1 - \xi)^2 (1 - 2\xi)}
+  for \eqn{\xi < 1 / 2}; undefined otherwise.
 
-\strong{Probability density function (p.d.f)}:
+  **Probability density function (p.d.f)**:
 
-If \eqn{\xi \neq 0}{\xi is not equal to 0} then
-\deqn{f(x) = \sigma^{-1} [1 + \xi (x - \mu) / \sigma] ^ {-(1 + 1/\xi)}}{%
+  If \eqn{\xi \neq 0}{\xi is not equal to 0} then
+  \deqn{f(x) = \sigma^{-1} [1 + \xi (x - \mu) / \sigma] ^ {-(1 + 1/\xi)}}{%
        f(x) = (1 / \sigma) [1 + \xi (x - \mu) / \sigma] ^ {-(1 + 1/\xi)}}
-for \eqn{1 + \xi (x - \mu) / \sigma > 0}.  The p.d.f. is 0 outside the
-support.
+  for \eqn{1 + \xi (x - \mu) / \sigma > 0}.  The p.d.f. is 0 outside the
+  support.
 
-In the \eqn{\xi = 0} special case
-\deqn{f(x) = \sigma ^ {-1} \exp[-(x - \mu) / \sigma]}{%
+  In the \eqn{\xi = 0} special case
+  \deqn{f(x) = \sigma ^ {-1} \exp[-(x - \mu) / \sigma]}{%
        f(x) = (1 / \sigma) exp[-(x - \mu) / \sigma]}
-for \eqn{x} in [\eqn{\mu, \infty}).  The p.d.f. is 0 outside the support.
+  for \eqn{x} in [\eqn{\mu, \infty}).  The p.d.f. is 0 outside the support.
 
-\strong{Cumulative distribution function (c.d.f)}:
+  **Cumulative distribution function (c.d.f)**:
 
-If \eqn{\xi \neq 0}{\xi is not equal to 0} then
-\deqn{F(x) = 1 - \exp\{-[1 + \xi (x - \mu) / \sigma] ^ {-1/\xi} \}}{%
+  If \eqn{\xi \neq 0}{\xi is not equal to 0} then
+  \deqn{F(x) = 1 - \exp\{-[1 + \xi (x - \mu) / \sigma] ^ {-1/\xi} \}}{%
        F(x) = 1 - exp{ -[1 + \xi (x - \mu) / \sigma] ^ (-1/\xi)} }
-for \eqn{1 + \xi (x - \mu) / \sigma > 0}.  The c.d.f. is 0 below the
-support and 1 above the support.
+  for \eqn{1 + \xi (x - \mu) / \sigma > 0}.  The c.d.f. is 0 below the
+  support and 1 above the support.
 
-In the \eqn{\xi = 0} special case
-\deqn{F(x) = 1 - \exp[-(x - \mu) / \sigma] \}}{%
+  In the \eqn{\xi = 0} special case
+  \deqn{F(x) = 1 - \exp[-(x - \mu) / \sigma] \}}{%
         F(x) = 1 - exp[-(x - \mu) / \sigma] }
-for \eqn{x} in \eqn{R}, the set of all real numbers.
+  for \eqn{x} in \eqn{R}, the set of all real numbers.
 }
 \examples{
 
